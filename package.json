@@ -1,9 +1,0 @@
-{
-  "name": "mr-russians-casino",
-  "version": "2.0.0",
-  "description": "Play-money casino with persistent PostgreSQL storage, online accounts, leaderboard and chat",
-  "main": "server.js",
-  "scripts": { "start": "node server.js" },
-  "engines": { "node": ">=18" },
-  "dependencies": { "pg": "^8.16.3" }
-}
