@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mr.Russians Casino</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+
+*{box-sizing:border-box}
+:root{
+  --bg:#0a0706; --bg2:#0d0908;
+  --panel:#17110e; --panel2:#1d1512; --panel3:#120d0b;
+  --red:#a91c2e; --red2:#d92c40; --redSoft:#5c1420;
+  --gold:#c9a15a; --gold2:#e8c887; --goldDim:#8a6f3f;
+  --emerald:#1f6b4a; --emerald2:#2f9166;
+  --line:#2c211c; --line2:#3a2b23;
+  --text:#f4ece0; --muted:#a99a8c; --muted2:#8b7c70;
+}
+*::selection{background:rgba(201,161,90,.28);color:#fff}
+body{
+  margin:0;font-family:Inter,system-ui,sans-serif;color:var(--text);min-height:100vh;
+  background:
+    radial-gradient(circle at 50% -8%,rgba(169,28,46,.20),transparent 40%),
+    radial-gradient(circle at 90% 15%,rgba(201,161,90,.05),transparent 35%),
+    linear-gradient(180deg,#0b0807 0%,#070504 100%);
+}
+h1,h2,.brandFont{font-family:'Fraunces',Georgia,serif}
+header{
+  position:sticky;top:0;z-index:10;height:76px;padding:0 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,6,5,.92);border-bottom:1px solid var(--line2);
+  backdrop-filter:blur(16px);
+}
+.logo{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;letter-spacing:.2px;font-family:'Fraunces',serif}
+.logoMark{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:linear-gradient(150deg,#7d0f1f,#2c0509);
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  box-shadow:0 0 20px rgba(169,28,46,.35),inset 0 0 0 1px rgba(201,161,90,.15);
+  font-size:18px
+}
+.balance{
+  display:flex;align-items:center;gap:9px;padding:10px 17px;border-radius:12px;
+  background:linear-gradient(160deg,#1c140f,#120d0a);border:1px solid var(--line2);
+  font-weight:700;letter-spacing:.2px;
+  box-shadow:inset 0 1px rgba(255,255,255,.03);
+}
+.coinIcon{color:var(--gold2);text-shadow:0 0 10px rgba(232,200,135,.5)}
+.wrap{max-width:1050px;margin:auto;padding:34px 18px 70px}
+.notice{
+  display:flex;gap:10px;align-items:center;padding:13px 16px;margin-bottom:25px;
+  border:1px solid var(--line2);border-radius:13px;
+  background:linear-gradient(90deg,rgba(201,161,90,.07),transparent);
+  color:var(--muted);font-size:13px
+}
+.tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px;
+  background:var(--panel3);border:1px solid var(--line);padding:6px;border-radius:15px
+}
+.tabs button,.btn{
+  border:0;border-radius:10px;padding:12px 16px;cursor:pointer;
+  background:transparent;color:#b9ada2;font-weight:700;font-family:inherit;
+  transition:.16s ease;
+}
+.tabs button:hover{color:#fff;background:rgba(255,255,255,.04)}
+.tabs button.active{
+  color:#fff;background:linear-gradient(135deg,var(--red2),var(--redSoft));
+  box-shadow:0 5px 20px rgba(169,28,46,.28),inset 0 0 0 1px rgba(201,161,90,.25)
+}
+.panel{
+  display:none;position:relative;background:linear-gradient(165deg,var(--panel),var(--panel3));
+  border:1px solid var(--line);border-radius:20px;padding:28px;
+  box-shadow:0 20px 55px rgba(0,0,0,.5);
+  overflow:hidden;
+}
+.panel::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.55;
+}
+.panel.active{display:block}
+.panel h2{margin:0 0 6px;font-size:27px;font-weight:600;letter-spacing:.2px}
+.panel h3{font-size:12.5px;text-transform:uppercase;letter-spacing:1.4px;color:var(--goldDim);margin:24px 0 10px;font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:18px 0}
+input,select{
+  background:var(--panel3)!important;color:#fff;border:1px solid var(--line2)!important;
+  border-radius:11px;padding:12px;width:135px;font-weight:600;font-family:inherit
+}
+input:focus,select:focus{outline:none;border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(201,161,90,.15)}
+.btn{
+  color:#fff;background:#231a16;border:1px solid var(--line2);padding:12px 18px
+}
+.btn:hover{background:#2b201a;transform:translateY(-1px)}
+.row .btn:first-of-type{background:linear-gradient(135deg,var(--red2),var(--redSoft));border-color:var(--red2)}
+.row .btn:first-of-type:hover{background:linear-gradient(135deg,#e83a4f,var(--red))}
+.status{
+  margin-top:18px;padding:15px 17px;border-radius:12px;background:var(--panel3);
+  border:1px solid var(--line);color:#dcd2c8;min-height:50px;display:flex;align-items:center;
+  font-size:14px;
+}
+.cards{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+.card{
+  width:65px;height:91px;background:linear-gradient(160deg,#fdfbf6,#ece4d4);color:#1c1310;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;font-size:21px;font-weight:800;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow:0 6px 16px rgba(0,0,0,.45);
+  transform-origin:center bottom;
+}
+.card.deal-in{animation:cardDealIn .42s cubic-bezier(.2,.85,.25,1) both;}
+.card.flip-in{animation:cardFlipIn .48s ease both;}
+@keyframes cardDealIn{
+  0%{opacity:0;transform:translateY(-28px) translateX(-14px) rotate(-8deg) scale(.82)}
+  70%{opacity:1;transform:translateY(4px) translateX(2px) rotate(2deg) scale(1.03)}
+  100%{opacity:1;transform:translateY(0) translateX(0) rotate(0) scale(1)}
+}
+@keyframes cardFlipIn{
+  0%{transform:perspective(500px) rotateY(90deg) scale(.96);opacity:.65}
+  100%{transform:perspective(500px) rotateY(0) scale(1);opacity:1}
+}
+.coin{
+  width:138px;height:138px;border-radius:50%;margin:28px auto;
+  display:grid;place-items:center;font-size:28px;font-weight:800;
+  background:radial-gradient(circle at 35% 28%,#e8c887,#8a6f3f 72%);
+  color:#221306;border:6px solid #3c2a10;
+  box-shadow:0 0 0 2px var(--gold),0 16px 40px rgba(0,0,0,.5);
+}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:20px;max-width:420px}
+.cell{
+  aspect-ratio:1;border-radius:11px;border:1px solid var(--line2);
+  background:linear-gradient(160deg,#1e1712,#140f0c);color:#fff;
+  font-size:19px;font-weight:800;cursor:pointer;transition:.14s ease;
+}
+.cell:hover{border-color:var(--gold);background:#241a13;transform:translateY(-1px)}
+.cell.safe{background:linear-gradient(160deg,var(--emerald2),var(--emerald));border-color:#3fae7a;color:#fff}
+.cell.mine{background:linear-gradient(160deg,#8a1f2c,#4c0d16);border-color:var(--red2)}
+.good{background:linear-gradient(135deg,var(--emerald2),var(--emerald))!important;border-color:#3fae7a!important}
+.danger{background:#7f2630}
+
+.rouletteWrap{display:grid;grid-template-columns:minmax(300px,1fr) 260px;gap:25px;align-items:center}
+.rouletteStage{position:relative;width:min(430px,80vw);aspect-ratio:1;margin:10px auto}
+.rouletteWheel{
+  position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(
+    #14100d 0deg 9.73deg,#a91c2e 9.73deg 19.46deg,#14100d 19.46deg 29.19deg,
+    #a91c2e 29.19deg 38.92deg,#14100d 38.92deg 48.65deg,#a91c2e 48.65deg 58.38deg,
+    #14100d 58.38deg 68.11deg,#a91c2e 68.11deg 77.84deg,#14100d 77.84deg 87.57deg,
+    #a91c2e 87.57deg 97.30deg,#14100d 97.30deg 107.03deg,#a91c2e 107.03deg 116.76deg,
+    #14100d 116.76deg 126.49deg,#a91c2e 126.49deg 136.22deg,#14100d 136.22deg 145.95deg,
+    #a91c2e 145.95deg 155.68deg,#14100d 155.68deg 165.41deg,#a91c2e 165.41deg 175.14deg,
+    #14100d 175.14deg 184.87deg,#a91c2e 184.87deg 194.60deg,#14100d 194.60deg 204.33deg,
+    #a91c2e 204.33deg 214.06deg,#14100d 214.06deg 223.79deg,#a91c2e 223.79deg 233.52deg,
+    #14100d 233.52deg 243.25deg,#a91c2e 243.25deg 252.98deg,#14100d 252.98deg 262.71deg,
+    #a91c2e 262.71deg 272.44deg,#14100d 272.44deg 282.17deg,#a91c2e 282.17deg 291.90deg,
+    #14100d 291.90deg 301.63deg,#a91c2e 301.63deg 311.36deg,#14100d 311.36deg 321.09deg,
+    #a91c2e 321.09deg 330.82deg,#14100d 330.82deg 340.55deg,#a91c2e 340.55deg 350.28deg,
+    #1f6b4a 350.28deg 360deg
+  );
+  border:12px solid #241a13;box-shadow:0 0 0 5px var(--gold),0 20px 55px rgba(0,0,0,.65);
+  transition:transform 4.5s cubic-bezier(.12,.75,.12,1);
+}
+.rouletteWheel::after{content:"";position:absolute;inset:14%;border-radius:50%;border:4px solid var(--goldDim);box-shadow:inset 0 0 0 12px #14100d}
+.wheelNumbers{position:absolute;inset:0;pointer-events:none}
+.wheelNumbers span{position:absolute;left:50%;top:50%;transform-origin:0 0;font-size:13px;font-weight:800;text-shadow:0 2px 3px #000}
+.rouletteHub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,#f0dca8,#8a6f3f 45%,#241a13 48%);border:6px solid #14100d;z-index:3}
+.roulettePointer{position:absolute;left:50%;top:-17px;transform:translateX(-50%);z-index:5;width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:30px solid var(--gold2);filter:drop-shadow(0 3px 3px #000)}
+.ball{
+  position:absolute;left:50%;top:50%;width:18px;height:18px;border-radius:50%;background:#fff;
+  box-shadow:0 0 12px #fff;transform:translate(-50%,-50%);z-index:4;display:none
+}
+.rouletteStage.spinning .ball{display:block;animation:ballOrbit 1.15s linear infinite}
+@keyframes ballOrbit{from{transform:translate(-50%,-50%) rotate(0deg) translateX(170px)}to{transform:translate(-50%,-50%) rotate(-360deg) translateX(170px)}}
+.rouletteWheel.spinning{transform:rotate(1440deg)}
+.rouletteChoices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
+.rChoice{padding:11px;border:1px solid var(--line2);border-radius:10px;background:#1c1512;color:#fff;font-weight:800;cursor:pointer;transition:.14s ease}
+.rChoice.red{background:linear-gradient(160deg,#8a1f2c,#4c0d16)}
+.rChoice.black{background:linear-gradient(160deg,#1a1512,#0c0908)}
+.rChoice.green{background:linear-gradient(160deg,var(--emerald2),var(--emerald))}
+.rChoice.selected{outline:2px solid var(--gold2);box-shadow:0 0 15px rgba(232,200,135,.25)}
+.betTools{display:flex;gap:7px;flex-wrap:wrap}
+.betTool{border:1px solid var(--line2);background:#1c1512;color:#fff;border-radius:9px;padding:9px 12px;font-weight:800;cursor:pointer}
+.betTool:hover{background:#251b16}
+.sideGrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+.chatBox,.leaderBox{background:var(--panel3);border:1px solid var(--line);border-radius:15px;padding:17px}
+.chatBox .chatMessages{height:190px;overflow:auto;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.chatMsg{padding:9px 11px;background:var(--panel2);border-radius:10px;font-size:13px}
+.chatMsg b{color:var(--gold2)}
+.chatBox .chatInput{display:flex;gap:7px}.chatBox .chatInput input{flex:1;width:auto}
+.leaderRow{display:grid;grid-template-columns:30px 1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:13px}
+.leaderRow strong{color:var(--gold2)}
+@media(max-width:800px){.rouletteWrap{grid-template-columns:1fr}.sideGrid{grid-template-columns:1fr}}
+
+@media(max-width:600px){
+  header{padding:0 15px}.wrap{padding:22px 12px 50px}
+  .logo{font-size:17px}.balance{padding:9px 11px}
+  .panel{padding:19px}.tabs button{padding:11px 7px;font-size:13px}
+}
+
+.authOverlay{position:fixed;inset:0;z-index:100;background:radial-gradient(circle at 50% 10%,rgba(169,28,46,.22),#070504 55%);display:grid;place-items:center;padding:20px}
+.authCard{width:min(430px,94vw);background:linear-gradient(165deg,var(--panel),var(--panel3));border:1px solid var(--line2);border-radius:22px;padding:30px;box-shadow:0 25px 80px rgba(0,0,0,.7)}
+.authLogo{width:58px;height:58px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(150deg,#7d0f1f,#2c0509);border:1px solid var(--gold);color:var(--gold2);font-size:27px;margin:0 auto 16px;box-shadow:0 0 30px rgba(169,28,46,.35)}
+.authCard h1{text-align:center;margin:0;font-size:26px;font-weight:600}.authSub{text-align:center;color:var(--muted);font-size:13px;margin:7px 0 24px}
+.authTabs{display:grid;grid-template-columns:1fr 1fr;background:var(--panel3);border:1px solid var(--line);padding:4px;border-radius:11px;margin-bottom:18px}
+.authTabs button{border:0;background:transparent;color:#a99a8c;padding:10px;border-radius:8px;font-weight:700;cursor:pointer}
+.authTabs button.active{background:linear-gradient(135deg,var(--red2),var(--redSoft));color:white}
+.authForm{display:flex;flex-direction:column;gap:10px}.authForm label{font-size:12px;color:var(--muted);font-weight:700}
+.authForm input{width:100%;padding:13px}
+.authBtn{margin-top:7px;background:linear-gradient(135deg,var(--red2),var(--redSoft))!important;border-color:var(--red2)!important;width:100%}
+.authBtn:hover{background:linear-gradient(135deg,#e83a4f,var(--red))!important}
+.authError{min-height:18px;color:#ff8891;text-align:center;font-size:12px;margin-top:8px}
+.adminBadge{display:none;margin-left:8px;padding:3px 8px;border-radius:6px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#241306;font-size:10px;font-weight:800;vertical-align:middle}
+.userName{font-size:12px;color:var(--muted);margin-right:12px}
+
+
+.adminOnly{display:none}
+.adminGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+.adminCard{background:var(--panel3);border:1px solid var(--line);border-radius:14px;padding:16px}
+.adminCard h3{margin:0 0 7px;color:#fff;font-size:15px;text-transform:none;letter-spacing:0;font-weight:700}
+.adminCard p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}
+.adminLog{margin-top:12px;max-height:180px;overflow:auto;font-size:12px;color:#c4b8ab}
+.adminLog div{padding:8px 0;border-bottom:1px solid var(--line)}
+@media(max-width:600px){.adminGrid{grid-template-columns:1fr}}
+
+
+/* ADMIN CONTROL CENTER */
+.adminModalBackdrop{
+  position:fixed; inset:0; z-index:1000;
+  background:rgba(4,2,2,.78); backdrop-filter:blur(5px);
+  display:none; align-items:center; justify-content:center; padding:24px;
+}
+.adminModalBackdrop.show{display:flex}
+.adminModal{
+  width:min(980px,96vw); max-height:88vh; overflow:auto;
+  background:linear-gradient(165deg,var(--panel),var(--panel3)); border:1px solid var(--line2); border-radius:18px;
+  box-shadow:0 28px 100px rgba(0,0,0,.65); color:var(--text);
+}
+.adminModalHeader{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 22px; border-bottom:1px solid var(--line);
+  position:sticky; top:0; background:var(--panel); z-index:2;
+}
+.adminModalHeader h2{margin:0;font-size:19px;font-weight:600}
+.adminClose{background:var(--panel2);border:1px solid var(--line2);color:#fff;border-radius:8px;padding:8px 12px;cursor:pointer}
+.adminModalBody{padding:20px}
+.adminStats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
+.adminStat{background:var(--panel3);border:1px solid var(--line);border-radius:12px;padding:14px}
+.adminStat small{color:var(--muted2);display:block;margin-bottom:5px}
+.adminStat strong{font-size:20px;color:var(--gold2)}
+.adminTools{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.adminBox{background:var(--panel3);border:1px solid var(--line);border-radius:14px;padding:16px}
+.adminBox h3{margin:0 0 12px;font-size:15px;text-transform:none;letter-spacing:0;font-weight:700;color:var(--text)}
+.adminUserRow{display:flex;align-items:center;gap:10px;background:var(--panel2);border:1px solid var(--line2);border-radius:10px;padding:10px;margin-bottom:8px}
+.adminUserRow .userName{flex:1;color:var(--text)}
+.adminUserRow .userBalance{color:var(--gold2);font-weight:700}
+.adminInput{width:100%;box-sizing:border-box;background:var(--panel3);color:#fff;border:1px solid var(--line2);border-radius:8px;padding:10px;margin:5px 0 9px}
+.adminBtn{border:0;border-radius:8px;padding:9px 12px;cursor:pointer;font-weight:700;background:linear-gradient(135deg,var(--red2),var(--redSoft));color:white}
+.adminBtn.secondary{background:var(--panel2);border:1px solid var(--line2)}
+.adminBtn.danger{background:#8a1f2c}
+.adminBtn.green{background:linear-gradient(135deg,var(--emerald2),var(--emerald))}
+.adminActions{display:flex;gap:8px;flex-wrap:wrap}
+.adminLogBox{max-height:190px;overflow:auto;font-size:12px;color:#c4b8ab}
+.adminLogLine{padding:6px 0;border-bottom:1px solid var(--line)}
+@media(max-width:760px){
+  .adminStats,.adminTools{grid-template-columns:1fr}
+}
+
+
+/* GENERAL CHAT MESSAGE POPUPS */
+.chatToastWrap{position:fixed;top:82px;right:22px;z-index:2500;display:flex;flex-direction:column;gap:10px;pointer-events:none}
+.chatToast{min-width:260px;max-width:360px;padding:12px 15px;border:1px solid var(--gold);border-radius:12px;background:linear-gradient(135deg,#1d100e,#351018);box-shadow:0 12px 35px rgba(0,0,0,.5),0 0 22px rgba(169,28,46,.25);color:#fff;animation:chatToastIn .35s ease,chatToastOut .35s ease 3.3s forwards}
+.chatToast b{color:var(--gold2);display:block;margin-bottom:3px;font-size:12px}
+.chatToast span{font-size:13px;word-break:break-word}
+@keyframes chatToastIn{from{opacity:0;transform:translateX(30px) scale(.96)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes chatToastOut{to{opacity:0;transform:translateX(30px) scale(.96)}}
+@media(max-width:600px){.chatToastWrap{left:12px;right:12px;top:72px}.chatToast{min-width:0;max-width:none}}
+
+/* COMMUNITY CHAT */
+.chatQuickButton{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:14px auto 18px;
+  width:min(1100px,calc(100% - 28px));
+  box-sizing:border-box;
+  padding:14px 18px;
+  border:1px solid var(--gold);
+  border-radius:14px;
+  cursor:pointer;
+  color:#fff;
+  font-weight:700;
+  font-size:15px;
+  background:linear-gradient(100deg,var(--redSoft),var(--red2),var(--redSoft));
+  background-size:220% 100%;
+  box-shadow:0 10px 30px rgba(169,28,46,.28),inset 0 0 0 1px rgba(201,161,90,.2);
+  transition:box-shadow .2s ease,transform .2s ease;
+}
+.chatQuickButton:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(169,28,46,.4),inset 0 0 0 1px rgba(232,200,135,.35)}
+.chatQuickIcon{font-size:22px}
+.chatQuickText{flex:1;text-align:left}
+.chatQuickSub{display:block;font-size:11px;font-weight:500;opacity:.78;margin-top:2px}
+
+.chatArea{
+  margin-top:24px;
+  background:var(--panel3);
+  border:1px solid var(--line2);
+  border-radius:16px;
+  overflow:hidden;
+  min-height:560px;
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr) 190px;
+  box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+.chatChannels{
+  background:linear-gradient(180deg,#150f0d,#120d0b);
+  border-right:1px solid var(--line);
+  padding:14px 10px;
+}
+.chatServerTitle{
+  font-weight:700;
+  font-size:14px;
+  padding:8px 10px 14px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:12px;
+  color:var(--gold2);
+}
+.chatCategory{
+  color:var(--muted2);
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.6px;
+  padding:10px 8px 5px;
+}
+.chatChannel{
+  width:100%;
+  border:0;
+  background:transparent;
+  color:#a99a8c;
+  text-align:left;
+  padding:8px 10px;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:14px;
+}
+.chatChannel:hover{background:rgba(201,161,90,.1);color:#fff}
+.chatChannel.active{background:linear-gradient(90deg,var(--redSoft),rgba(169,28,46,.35));color:#fff}
+.chatMain{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  background:linear-gradient(165deg,#171210,#120e0b);
+}
+.chatHeader{
+  height:56px;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  border-bottom:1px solid var(--line);
+  box-sizing:border-box;
+}
+.chatHeaderTitle{font-weight:700;color:var(--text)}
+.chatArea .chatMessages{
+  flex:1;
+  overflow:auto;
+  padding:18px 18px 8px;
+}
+.chatMessage{
+  display:flex;
+  gap:10px;
+  padding:8px 0;
+}
+.chatAvatar{
+  width:36px;height:36px;flex:0 0 36px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--red2),var(--redSoft));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;color:#fff;
+}
+.chatMessageBody{min-width:0}
+.chatMessageTop{display:flex;gap:8px;align-items:baseline}
+.chatAuthor{font-weight:700;color:var(--gold2)}
+.chatTime{font-size:11px;color:var(--muted2)}
+.chatText{color:#ddd2c6;line-height:1.45;word-break:break-word}
+.chatInputBar{
+  padding:12px 16px 16px;
+}
+.chatInputWrap{
+  display:flex;align-items:center;
+  background:var(--panel2);border:1px solid var(--line2);border-radius:9px;
+}
+.chatArea .chatInput{
+  flex:1;border:0;outline:0;background:transparent;color:#fff;
+  padding:12px;font-size:14px;
+}
+.chatSend{
+  border:0;background:linear-gradient(135deg,var(--red2),var(--redSoft));color:#fff;
+  border-radius:6px;padding:8px 13px;margin-right:6px;cursor:pointer;font-weight:700;
+}
+.chatMembers{
+  background:linear-gradient(180deg,#150f0d,#120d0b);
+  border-left:1px solid var(--line);
+  padding:14px 10px;
+}
+.chatMembersTitle{
+  color:var(--muted2);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;
+  padding:8px;
+}
+.chatMember{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 8px;color:#c4b8ab;font-size:13px;
+}
+.chatMemberDot{width:9px;height:9px;border-radius:50%;background:var(--emerald2);box-shadow:0 0 6px rgba(47,145,102,.7)}
+@media(max-width:800px){
+  .chatArea{grid-template-columns:150px minmax(0,1fr)}
+  .chatMembers{display:none}
+}
+
+
+/* NAVIGATION */
+.easyNav{
+  position:sticky; top:0; z-index:200;
+  width:100%; box-sizing:border-box;
+  display:flex; align-items:center; gap:8px;
+  padding:10px 14px;
+  background:rgba(8,6,5,.94);
+  border-bottom:1px solid var(--line2);
+  backdrop-filter:blur(12px);
+  box-shadow:0 5px 25px rgba(0,0,0,.3);
+}
+.easyNavBrand{
+  font-weight:700; font-size:15px; margin-right:auto;
+  color:#fff; white-space:nowrap; font-family:'Fraunces',serif;
+}
+.easyNavBrand span{color:var(--gold2)}
+.easyNavBtn{
+  border:1px solid var(--line2); background:var(--panel3); color:#d9cec2;
+  border-radius:9px; padding:9px 12px; cursor:pointer;
+  font-weight:600; transition:.18s;
+}
+.easyNavBtn:hover{
+  background:#231a16; color:#fff; border-color:var(--gold);
+  transform:translateY(-1px);
+}
+.easyNavBtn.chat{background:linear-gradient(135deg,var(--red2),var(--redSoft));border-color:var(--red2);color:#fff}
+.easyNavBtn.admin{display:none}
+.easyNavDivider{width:1px;height:25px;background:var(--line2);margin:0 3px}
+.pageTopBtn{
+  position:fixed; right:18px; bottom:18px; z-index:150;
+  width:44px;height:44px;border:1px solid var(--gold);
+  border-radius:50%; background:var(--panel3);color:#fff;cursor:pointer;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+  display:none; font-size:18px;
+}
+.pageTopBtn.show{display:block}
+.sectionHint{
+  max-width:1100px; margin:8px auto 14px; padding:0 14px;
+  color:var(--muted); font-size:13px;
+}
+.quickTiles{
+  max-width:1100px; margin:0 auto 18px; padding:0 14px;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+}
+.quickTile{
+  border:1px solid var(--line2); background:var(--panel3); color:#fff;
+  border-radius:12px; padding:13px; cursor:pointer; text-align:left; transition:.16s ease;
+}
+.quickTile:hover{border-color:var(--gold);background:#1e1611;transform:translateY(-1px)}
+.quickTile strong{display:block;margin-bottom:3px}
+.quickTile small{color:var(--muted)}
+@media(max-width:700px){
+  .easyNav{overflow-x:auto}
+  .easyNavBrand{display:none}
+  .easyNavBtn{white-space:nowrap}
+  .quickTiles{grid-template-columns:1fr}
+}
+
+.result-overlay{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:9999;opacity:0}
+.result-overlay.show{animation:resultFade .95s ease forwards}
+.result-card{min-width:280px;text-align:center;padding:22px 34px;border-radius:18px;border:1px solid var(--gold);
+ background:linear-gradient(160deg,#211711,#100b09);box-shadow:0 0 55px rgba(0,0,0,.75)}
+.result-title{font-size:34px;font-weight:900;letter-spacing:1px}
+.result-detail{margin-top:7px;font-size:18px;font-weight:800;color:var(--gold2)}
+.result-overlay.win .result-title{color:#65e6a5;text-shadow:0 0 22px rgba(47,145,102,.8)}
+.result-overlay.lose .result-title{color:#ff6675;text-shadow:0 0 22px rgba(217,44,64,.8)}
+.result-overlay.win .result-card{animation:winPop .75s ease;box-shadow:0 0 28px rgba(47,145,102,.65),0 0 85px rgba(47,145,102,.28)}
+.result-overlay.lose .result-card{animation:loseShake .65s ease;box-shadow:0 0 28px rgba(217,44,64,.7),0 0 85px rgba(217,44,64,.3)}
+@keyframes winPop{0%{transform:scale(.55);opacity:.2}55%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+@keyframes loseShake{0%{transform:translateX(0) scale(.8)}20%{transform:translateX(-14px) rotate(-2deg)}40%{transform:translateX(14px) rotate(2deg)}60%{transform:translateX(-8px)}80%{transform:translateX(8px)}100%{transform:translateX(0) scale(1)}}
+@keyframes resultFade{0%{opacity:0}12%{opacity:1}75%{opacity:1}100%{opacity:0}}
+
+.riskGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:560px;margin:24px auto}.riskCell{aspect-ratio:1;border:1px solid var(--line2);border-radius:14px;background:linear-gradient(160deg,#1e1712,#140f0c);color:#fff;font-size:22px;font-weight:900;cursor:pointer;transition:.15s}.riskCell:hover{border-color:var(--gold);transform:translateY(-2px)}.riskCell.win{background:linear-gradient(160deg,var(--emerald2),var(--emerald));border-color:#3fae7a}.riskCell.lose{background:linear-gradient(160deg,#8a1f2c,#4c0d16);border-color:var(--red2)}.riskWarning{padding:16px;border:1px solid #8a6f3f;border-radius:13px;background:rgba(201,161,90,.07);margin:16px 0;color:#e8c887}.riskAllIn{font-size:16px;font-weight:900;padding:13px 20px;border-radius:10px;border:1px solid var(--red2);background:linear-gradient(135deg,var(--red2),var(--redSoft));color:#fff;cursor:pointer}.riskAllIn:disabled{opacity:.5;cursor:not-allowed}
+
+.rrWrap{max-width:620px;margin:0 auto;text-align:center}.rrWarning{padding:15px;border:1px solid #8a6f3f;border-radius:13px;background:rgba(201,161,90,.07);color:#e8c887;margin:15px 0}.rrCylinderStage{position:relative;width:190px;margin:30px auto 42px;display:grid;place-items:center}.rrChamberLabel{position:absolute;left:50%;bottom:-30px;transform:translateX(-50%);font-size:9px;letter-spacing:1.8px;color:#8e8277;white-space:nowrap;pointer-events:none}.rrCylinder{width:190px;height:190px;border-radius:50%;margin:30px auto;display:grid;place-items:center;position:relative;background:radial-gradient(circle at 42% 36%,#777 0,#4a4a4a 20%,#262626 48%,#111 72%,#050505 100%);border:9px solid #777;box-shadow:inset 0 0 0 3px #b0b0b0,inset 0 0 0 10px #242424,0 16px 35px rgba(0,0,0,.65),0 0 28px rgba(255,255,255,.06);transition:filter .2s;will-change:transform;transform:translateZ(0);backface-visibility:hidden}.rrCylinder::after{content:'';position:absolute;inset:15px;border-radius:50%;border:1px solid rgba(255,255,255,.14);pointer-events:none}.rrCylinder.spinning{animation:rrSpin 2.8s cubic-bezier(.16,.72,.18,1) both}.rrCylinder.spinning .rrHole{box-shadow:inset 0 4px 9px #000,0 0 8px rgba(255,255,255,.08)}.rrHole{position:absolute;width:30px;height:30px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#202020,#030303 65%);border:2px solid #969696;box-shadow:inset 0 4px 9px #000,0 2px 4px rgba(255,255,255,.12)}.rrHole:nth-child(1){transform:translateY(-58px)}.rrHole:nth-child(2){transform:translate(50px,-29px)}.rrHole:nth-child(3){transform:translate(50px,29px)}.rrHole:nth-child(4){transform:translateY(58px)}.rrHole:nth-child(5){transform:translate(-50px,29px)}.rrHole:nth-child(6){transform:translate(-50px,-29px)}.rrCenter{width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d8d8d8,#777 42%,#252525 70%);border:4px solid #aaa;display:grid;place-items:center;font-size:20px;box-shadow:0 3px 8px #000}.rrButtons{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.rrBtn{padding:12px 20px;border-radius:10px;border:1px solid #777;background:#262626;color:#fff;font-weight:800;cursor:pointer;transition:transform .12s,filter .12s}.rrBtn:not(:disabled):hover{transform:translateY(-1px);filter:brightness(1.12)}.rrBtn.primary{background:linear-gradient(135deg,#8b1e2d,#c43d4d);border-color:#d45b69}.rrBtn:disabled{opacity:.45;cursor:not-allowed}.rrStatus{margin-top:15px}.rrLose{animation:rrLose .7s ease both;filter:brightness(1.18)}.rrBang{font-size:clamp(46px,10vw,92px);font-weight:1000;letter-spacing:3px;color:#fff;text-shadow:0 4px 0 #7d101e,0 0 30px rgba(255,60,60,.7);animation:rrBang .7s cubic-bezier(.2,.9,.2,1) both}.rrOverlay{position:fixed;inset:0;z-index:9998;display:none;place-items:center;background:rgba(100,0,10,.82);backdrop-filter:blur(3px)}.rrOverlay.show{display:grid;animation:rrFade .18s ease both}.rrOverlayCard{padding:35px;text-align:center;background:linear-gradient(160deg,#171313,#2a1115);border:2px solid #b73745;border-radius:18px;box-shadow:0 25px 80px rgba(0,0,0,.7);min-width:min(440px,86vw)}.rrOverlayCard h2{margin:8px 0;font-size:34px}.rrOverlayCard p{color:#ddd}.rrOverlayClose{margin-top:12px;padding:10px 18px;border:0;border-radius:9px;cursor:pointer;font-weight:800}@keyframes rrSpin{0%{transform:translateZ(0) rotate(0deg)}12%{transform:translateZ(0) rotate(220deg)}38%{transform:translateZ(0) rotate(720deg)}68%{transform:translateZ(0) rotate(1260deg)}88%{transform:translateZ(0) rotate(1690deg)}100%{transform:translateZ(0) rotate(1800deg)}}@keyframes rrBang{0%{opacity:0;transform:scale(.55) rotate(-8deg)}55%{opacity:1;transform:scale(1.14) rotate(4deg)}100%{opacity:1;transform:scale(1) rotate(0)}}@keyframes rrFade{from{opacity:0}to{opacity:1}}@keyframes rrLose{0%,100%{transform:translate(0)}20%{transform:translate(-8px,3px)}40%{transform:translate(8px,-3px)}60%{transform:translate(-5px,2px)}80%{transform:translate(5px,-2px)}}
+/* PLINKO */
+#plinko canvas{display:block;width:100%;max-width:480px;aspect-ratio:480/600;margin:16px auto 0;border-radius:16px;background:var(--panel3);border:1px solid var(--line2);box-shadow:inset 0 0 40px rgba(0,0,0,.6),0 0 0 1px rgba(201,161,90,.12);touch-action:manipulation}
+.plinkoDrop{background:linear-gradient(135deg,var(--red2),var(--redSoft))!important;border-color:var(--red2)!important}
+.plinkoAuto.on{background:linear-gradient(135deg,var(--emerald2),var(--emerald));border-color:var(--emerald2);color:#fff}
+.plinkoHist{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;min-height:30px;margin-top:14px}
+.plinkoHist span{padding:4px 10px;border-radius:8px;font-weight:800;font-size:12.5px;border:1px solid var(--line2);background:var(--panel2);animation:pkPop .3s ease-out}
+@keyframes pkPop{from{transform:scale(.4);opacity:0}to{transform:scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.plinkoHist span{animation:none}}
+
+/* V3 colorful life + animation layer */
+:root{--cyan:#39d8ff;--pink:#ff4d8d;--violet:#9b6cff;--lime:#7dff9a}
+body{background:radial-gradient(circle at 10% 10%,rgba(57,216,255,.08),transparent 28%),radial-gradient(circle at 90% 5%,rgba(255,77,141,.10),transparent 30%),radial-gradient(circle at 50% 100%,rgba(155,108,255,.08),transparent 35%),linear-gradient(180deg,#08070f,#05040a)}
+header{background:rgba(7,6,14,.84)}
+.panel{background:linear-gradient(145deg,rgba(28,18,34,.96),rgba(10,11,22,.97));border-color:rgba(155,108,255,.25);box-shadow:0 25px 70px rgba(0,0,0,.55),0 0 45px rgba(155,108,255,.04)}
+.panel::before{background:linear-gradient(90deg,transparent,var(--pink),var(--cyan),var(--violet),transparent);animation:hueLine 5s linear infinite}
+@keyframes hueLine{to{filter:hue-rotate(360deg)}}
+.tabs{background:rgba(10,8,18,.8);border-color:rgba(57,216,255,.15)}
+.tabs button.active{background:linear-gradient(135deg,var(--pink),var(--violet),var(--cyan));background-size:200% 200%;animation:tabGlow 4s ease infinite}
+@keyframes tabGlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.btn{background:linear-gradient(135deg,#211a32,#171427);border-color:rgba(155,108,255,.3);box-shadow:0 5px 18px rgba(0,0,0,.18)}
+.btn:hover{box-shadow:0 0 22px rgba(57,216,255,.18);transform:translateY(-2px) scale(1.01)}
+.notice{border-color:rgba(57,216,255,.2);background:linear-gradient(90deg,rgba(57,216,255,.08),rgba(255,77,141,.06),transparent)}
+.leaderBanner{position:sticky;top:0;z-index:30;height:34px;overflow:hidden;background:linear-gradient(90deg,#150d27,#0d1525,#1b0d20);border-bottom:1px solid rgba(255,255,255,.08);white-space:nowrap}
+#leaderBannerInner{display:inline-block;padding-left:100%;line-height:34px;font-weight:900;letter-spacing:.8px;color:#ffe8a3;animation:bannerMove 18s linear infinite;text-shadow:0 0 12px rgba(255,209,102,.45)}
+@keyframes bannerMove{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.chatArea{min-height:380px;height:420px;grid-template-columns:150px minmax(0,1fr) 150px}
+.chatArea .chatMessages{padding:10px 14px;max-height:none}
+.chatMessage{padding:5px 0}.chatAvatar{width:30px;height:30px;flex-basis:30px}.chatText{font-size:12px}
+.arcadeGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.arcadeCard{background:linear-gradient(145deg,rgba(32,22,44,.9),rgba(13,13,25,.95));border:1px solid rgba(155,108,255,.22);border-radius:16px;padding:16px;transition:.2s}
+.arcadeCard:hover{transform:translateY(-4px);border-color:rgba(57,216,255,.45);box-shadow:0 14px 35px rgba(0,0,0,.35)}
+.arcadeCard b{font-size:16px}.arcadeCard p{color:var(--muted);font-size:12px;min-height:30px}.arcadeCard input,.arcadeCard select{width:100%;margin:4px 0}
+.miniOut{min-height:22px;margin-top:9px;color:#ffe8a3;font-weight:800}
+.profilePreview{display:flex;align-items:center;gap:18px;padding:20px;border:1px solid rgba(57,216,255,.18);border-radius:18px;background:linear-gradient(120deg,rgba(57,216,255,.06),rgba(255,77,141,.08));margin:18px 0}
+.profileAvatar{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;font-weight:1000;font-size:24px;background:linear-gradient(135deg,#191327,#0b0a12);border:3px solid var(--cyan);box-shadow:0 0 25px rgba(57,216,255,.3)}
+.frame-neon-orbit{animation:orbitPulse 2s ease-in-out infinite}.frame-rainbow{border-color:var(--pink);animation:rainbowFrame 3s linear infinite}.frame-fire{border-color:#ff9a3c;box-shadow:0 0 25px #ff4d6d;animation:firePulse 1s infinite}.frame-ice{border-color:#9de9ff;box-shadow:0 0 25px #39d8ff;animation:icePulse 2s infinite}.frame-galaxy{border-color:#9b6cff;box-shadow:0 0 30px #9b6cff;animation:galaxy 4s linear infinite}
+@keyframes orbitPulse{50%{transform:rotate(3deg) scale(1.05);box-shadow:0 0 35px var(--cyan)}}@keyframes rainbowFrame{to{filter:hue-rotate(360deg)}}@keyframes firePulse{50%{transform:translateY(-3px) scale(1.04)}}@keyframes icePulse{50%{box-shadow:0 0 38px #bff5ff}}@keyframes galaxy{50%{transform:rotate(-3deg) scale(1.04)}}
+.profileName{font-size:24px;font-weight:1000;letter-spacing:.5px}.profileName.gradient{background:linear-gradient(90deg,var(--cyan),var(--pink),#ffe66d);-webkit-background-clip:text;color:transparent}.profileName.gold{color:#ffd166}.profileName.rainbow{background:linear-gradient(90deg,#ff4d6d,#ffd166,#7dff9a,#39d8ff,#9b6cff);-webkit-background-clip:text;color:transparent;background-size:250% 100%;animation:rainbowName 3s linear infinite}.profileName.neon{color:#fff;text-shadow:0 0 8px var(--cyan),0 0 20px var(--pink)}@keyframes rainbowName{to{background-position:250% 0}}
+.profileTitle{color:var(--muted);font-size:12px;margin-top:4px}
+.customGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.customGrid label{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:12px;font-weight:700}.customGrid input,.customGrid select{width:100%}
+.saveProfileBtn{margin-top:16px;width:100%}
+.garticTop{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:18px 0}
+.garticCanvas{display:block;width:100%;max-height:520px;touch-action:none;background:#fff;border-radius:16px;cursor:crosshair;box-shadow:0 12px 35px rgba(0,0,0,.4)}
+.drawTools{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.garticDrawings{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.drawingCard{background:var(--panel3);border:1px solid var(--line2);border-radius:14px;padding:10px}.drawingCard img{width:100%;background:#fff;border-radius:9px;display:block}.drawingCard button{width:100%;margin-top:8px}
+@media(max-width:800px){.arcadeGrid{grid-template-columns:repeat(2,1fr)}.customGrid{grid-template-columns:1fr 1fr}.chatArea{grid-template-columns:110px minmax(0,1fr);height:390px}.chatMembers{display:none}}
+@media(max-width:560px){.arcadeGrid,.customGrid{grid-template-columns:1fr}.garticCanvas{height:auto}}
+</style>
+</head>
+<body>
+
+<nav class="easyNav" aria-label="Main navigation">
+  <div class="easyNavBrand">MR.<span>RUSSIANS</span> CASINO</div>
+  <button class="easyNavBtn" onclick="easyGoHome()">🏠 Home</button>
+  <button class="easyNavBtn" onclick="easyGoGames()">🎮 Games</button>
+  <button class="easyNavBtn chat" onclick="easyGoChat()">💬 Chat</button>
+  <button class="easyNavBtn" onclick="signOut()">Sign out</button>
+  <button id="easyAdminNav" class="easyNavBtn admin" onclick="openAdminUI()">🛠️ Admin</button>
+</nav>
+
+
+<div class="authOverlay" id="authOverlay">
+  <div class="authCard">
+    <div class="authLogo">♠</div>
+    <h1>MR.RUSSIANS CASINO</h1>
+    <div class="authSub">Sign in or create your play-money arcade account</div>
+    <div class="authTabs">
+      <button id="signInTab" class="active" onclick="switchAuth('signin')">Sign In</button>
+      <button id="signUpTab" onclick="switchAuth('signup')">Sign Up</button>
+    </div>
+    <div class="authForm" id="authForm">
+      <label>Username</label>
+      <input id="authUser" autocomplete="username" placeholder="Username" required>
+      <label>Password</label>
+      <input id="authPass" type="password" autocomplete="current-password" placeholder="Password" required>
+      <label id="confirmLabel" style="display:none">Confirm Password</label>
+      <input id="authConfirm" type="password" placeholder="Confirm password" style="display:none">
+      <button type="button" class="btn authBtn" id="authSubmit" onclick="submitAuth(event)">SIGN IN</button>
+      <div class="authError" id="authError"></div>
+    </div>
+    <div class="muted" style="text-align:center;margin-top:14px">Your account, coins, the leaderboard and chat are saved online.</div>
+  </div>
+</div>
+
+<div id="leaderBanner" class="leaderBanner"><div id="leaderBannerInner">🏆 #1 LEADERBOARD: Loading…</div></div>
+<header>
+  <div class="logo"><div class="logoMark">♠</div><span>MR.RUSSIANS CASINO</span></div>
+  <div style="display:flex;align-items:center"><span class="userName" id="userDisplay"></span><span class="adminBadge" id="adminBadge">ADMIN</span><div class="balance"><span class="coinIcon">●</span><span id="balance">1000</span> coins</div></div>
+</header>
+
+<div class="wrap">
+  <div class="notice">
+    <span>ⓘ</span><span>Play-money arcade. Coins are fictional and have no cash value.</span>
+  </div>
+
+  <div class="tabs">
+    <button class="active" onclick="showTab('blackjack',this)">Blackjack</button>
+    <button onclick="showTab('coinflip',this)">Coin Flip</button>
+    <button onclick="showTab('mines',this)">Mines</button>
+    <button onclick="showTab('roulette',this)">Roulette</button>
+
+    <button onclick="showTab('dice',this)">Dice Roll</button>
+    <button onclick="showTab('slots',this)">Slots</button>
+    <button onclick="showTab('higherlower',this)">Higher / Lower</button>
+    <button onclick="showTab('risktaker',this)">Risk Taker</button>
+    <button onclick="showTab('russianroulette',this)">Russian Roulette</button>
+    <button onclick="showTab('plinko',this)">Plinko</button>
+    <button onclick="showTab('arcade',this)">🎮 Arcade+</button>
+    <button onclick="showTab('profile',this)">✨ Profile</button>
+    <button onclick="showTab('gartic',this)">🎨 Gartic Draw</button>
+    <button id="adminTab" class="adminOnly" onclick="showTab('admin',this)">Admin Panel</button>
+  </div>
+
+  <section id="blackjack" class="panel active">
+    <h2>Blackjack</h2>
+    <div class="row">
+      <input id="bjBet" type="number" min="1" value="50"><button class="betTool" onclick="doubleBet('bjBet')">2×</button><button class="betTool" onclick="allBet('bjBet')">ALL</button>
+      <button class="btn" onclick="bjDeal()">Deal</button>
+      <button class="btn" onclick="bjHit()">Hit</button>
+      <button class="btn" onclick="bjStand()">Stand</button>
+    </div>
+    <p class="muted">Get closer to 21 than the dealer without going over.</p>
+    <h3>Dealer</h3><div id="dealerCards" class="cards"></div>
+    <h3>You</h3><div id="playerCards" class="cards"></div>
+    <div id="bjStatus" class="status">Place a fictional coin bet and deal.</div>
+  </section>
+
+  <section id="coinflip" class="panel">
+    <h2>Coin Flip</h2>
+    <div class="row">
+      <input id="cfBet" type="number" min="1" value="25"><button class="betTool" onclick="doubleBet('cfBet')">2×</button><button class="betTool" onclick="allBet('cfBet')">ALL</button>
+      <button class="btn" onclick="flipCoin('Heads')">Heads</button>
+      <button class="btn" onclick="flipCoin('Tails')">Tails</button>
+    </div>
+    <div id="coin" class="coin">?</div>
+    <div id="cfStatus" class="status">Pick heads or tails.</div>
+  </section>
+
+  <section id="mines" class="panel">
+    <h2>Mines</h2>
+    <div class="row">
+      <input id="mineBet" type="number" min="1" value="40"><button class="betTool" onclick="doubleBet('mineBet')">2×</button><button class="betTool" onclick="allBet('mineBet')">ALL</button>
+      <select id="mineCount" style="background:#120d0b;color:#fff;border:1px solid #3a2b23;border-radius:12px;padding:11px 12px">
+        <option value="3">3 mines</option>
+        <option value="5">5 mines</option>
+        <option value="7">7 mines</option>
+      </select>
+      <button class="btn" onclick="startMines()">Start</button>
+      <button class="btn good" onclick="cashOutMines()">Cash Out</button>
+    </div>
+    <p class="muted">Open safe tiles. Each safe tile increases the fictional payout multiplier.</p>
+    <div id="mineGrid" class="grid"></div>
+    <div id="mineStatus" class="status">Start a round.</div>
+  </section>
+
+  <section id="roulette" class="panel">
+    <h2>Roulette</h2>
+    <p class="muted">Choose red, black, or green, then spin. The wheel and ball animate in opposite directions.</p>
+    <div class="rouletteWrap">
+      <div class="rouletteStage" id="rouletteStage">
+        <div class="roulettePointer"></div>
+        <div class="rouletteWheel" id="rouletteWheel"></div>
+        <div class="wheelNumbers" id="wheelNumbers"></div>
+        <div class="rouletteHub"></div>
+        <div class="ball"></div>
+      </div>
+      <div>
+        <div class="row">
+          <input id="rouletteBet" type="number" min="1" value="50">
+        </div>
+        <div class="betTools">
+          <button class="betTool" onclick="doubleBet('rouletteBet')">2×</button>
+          <button class="betTool" onclick="allBet('rouletteBet')">ALL</button>
+        </div>
+        <div class="rouletteChoices">
+          <button class="rChoice red" onclick="chooseRoulette('red')">RED 2×</button>
+          <button class="rChoice black" onclick="chooseRoulette('black')">BLACK 2×</button>
+          <button class="rChoice green" onclick="chooseRoulette('green')">GREEN 14×</button>
+        </div>
+        <button class="btn" style="width:100%;background:linear-gradient(135deg,#d92c40,#5c1420);border-color:#d92c40" onclick="spinRoulette()">SPIN</button>
+        <div id="rouletteStatus" class="status">Pick a color and spin.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="dice" class="panel">
+    <h2>Dice Roll</h2>
+    <p class="muted">Pick a number from 1–6. Roll the die and win 5× your bet if it matches.</p>
+    <div class="row">
+      <input id="diceBet" type="number" min="1" value="25">
+      <select id="dicePick">
+        <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+        <option value="4">4</option><option value="5">5</option><option value="6">6</option>
+      </select>
+      <button class="betTool" onclick="doubleBet('diceBet')">2×</button>
+      <button class="betTool" onclick="allBet('diceBet')">ALL</button>
+      <button class="btn" onclick="rollDice()">ROLL</button>
+    </div>
+    <div id="diceResult" class="coin">?</div>
+    <div id="diceStatus" class="status">Pick a number and roll.</div>
+  </section>
+
+  <section id="slots" class="panel">
+    <h2>Slots</h2>
+    <p class="muted">Spin three reels. Three matching symbols pay 8×; two matching symbols pay 2×.</p>
+    <div class="row">
+      <input id="slotsBet" type="number" min="1" value="25">
+      <button class="betTool" onclick="doubleBet('slotsBet')">2×</button>
+      <button class="betTool" onclick="allBet('slotsBet')">ALL</button>
+      <button class="btn" onclick="spinSlots()">SPIN</button>
+    </div>
+    <div id="slotResult" style="font-size:48px;text-align:center;letter-spacing:15px;margin:28px 0">🍒 🍋 🔔</div>
+    <div id="slotsStatus" class="status">Spin the reels.</div>
+  </section>
+
+  <section id="higherlower" class="panel">
+    <h2>Higher / Lower</h2>
+    <p class="muted">Guess whether the next card is higher or lower than the current card. Correct guesses pay 2×.</p>
+    <div class="row">
+      <input id="hlBet" type="number" min="1" value="25">
+      <button class="betTool" onclick="doubleBet('hlBet')">2×</button>
+      <button class="betTool" onclick="allBet('hlBet')">ALL</button>
+      <button class="btn" onclick="startHigherLower()">New Card</button>
+      <button class="btn" onclick="guessHigherLower('higher')">Higher</button>
+      <button class="btn" onclick="guessHigherLower('lower')">Lower</button>
+    </div>
+    <div id="hlCurrent" class="coin">?</div>
+    <div id="hlStatus" class="status">Start a round.</div>
+  </section>
+
+
+  <section id="risktaker" class="panel">
+    <h2>Risk Taker</h2>
+    <div class="riskWarning"><strong>⚠️ ALL-IN WARNING</strong><br><span class="muted" style="color:#d9cec2">This game only allows an all-in play. Your entire fictional coin balance will be put at risk. There are 9 squares: exactly one contains <strong>50×</strong>; the other eight contain nothing, so choosing a losing square loses the entire all-in amount.</span></div>
+    <div class="row" style="justify-content:center"><button id="riskStart" class="riskAllIn" onclick="startRiskTaker()">GO ALL IN</button></div>
+    <div id="riskGrid" class="riskGrid"></div>
+    <div id="riskStatus" class="status">Read the warning, then choose GO ALL IN to start.</div>
+  </section>
+
+  <section id="russianroulette" class="panel">
+    <h2>Russian Roulette</h2>
+    <div class="rrWrap">
+      <input id="rrBet" type="number" min="1" value="50">
+      <div class="rrCylinderStage">
+        <div id="rrCylinder" class="rrCylinder" aria-label="Animated chamber">
+          <div class="rrHole"></div><div class="rrHole"></div><div class="rrHole"></div><div class="rrHole"></div><div class="rrHole"></div><div class="rrHole"></div>
+          <div class="rrCenter">✦</div>
+        </div>
+        <div class="rrChamberLabel">6 CHAMBERS</div>
+      </div>
+      <div class="rrButtons">
+        <button id="rrSpin" class="rrBtn" onclick="rrSpinCylinder()">SPIN</button>
+        <button id="rrPlay" class="rrBtn primary" onclick="rrTakeTurn()" disabled>TAKE TURN</button>
+      </div>
+      <div id="rrStatus" class="status rrStatus">Set your coin bet, then spin.</div>
+    </div>
+  </section>
+
+  <section id="plinko" class="panel">
+    <h2>Plinko</h2>
+    <p class="muted">Drop a ball through the pegs. Center slots pay less, the edges pay up to 10×. Each drop is a fair coin flip at every peg, and the average return is about 81% of your bet.</p>
+    <div class="row">
+      <input id="plinkoBet" type="number" min="1" value="50">
+      <button class="betTool" onclick="doubleBet('plinkoBet')">2×</button>
+      <button class="betTool" onclick="allBet('plinkoBet')">ALL</button>
+      <button class="btn plinkoDrop" onclick="plinkoDrop()">DROP BALL</button>
+      <button class="btn plinkoAuto" id="plinkoAuto" onclick="plinkoToggleAuto()">AUTO: OFF</button>
+    </div>
+    <canvas id="plinkoCanvas" aria-label="Plinko board"></canvas>
+    <div class="plinkoHist" id="plinkoHist" aria-live="polite"></div>
+    <div id="plinkoStatus" class="status">Set your bet and drop a ball.</div>
+  </section>
+
+
+  <section id="arcade" class="panel">
+    <h2>🎮 Arcade+</h2>
+    <p class="muted">A whole extra arcade of quick play-money games. Every result is resolved by the server.</p>
+    <div class="arcadeGrid">
+      <div class="arcadeCard"><b>🎡 Lucky Wheel</b><p>Spin for a random multiplier.</p><input id="wheelBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('wheel')">SPIN</button><div id="wheelOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🎨 Color Pick</b><p>Pick a color, then reveal.</p><select id="colorChoice"><option>red</option><option>blue</option><option>green</option><option>purple</option><option>gold</option></select><input id="colorBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('colorpick')">PLAY</button><div id="colorOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🏗️ Tower</b><p>Choose a floor. Higher floors are harder.</p><input id="towerLevel" type="number" min="1" max="12" value="3"><input id="towerBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('tower')">CLIMB</button><div id="towerOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🥤 Cups</b><p>Pick one of three cups.</p><select id="cupChoice"><option value="1">Cup 1</option><option value="2">Cup 2</option><option value="3">Cup 3</option></select><input id="cupBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('cups')">PICK</button><div id="cupOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🪜 Limbo</b><p>Set a target height. Beat it to win.</p><input id="limboTarget" type="number" min="5" max="95" value="60"><input id="limboBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('limbo')">GO</button><div id="limboOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🎲 Dice Duel</b><p>Roll against the house.</p><input id="duelBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('dice_duel')">DUEL</button><div id="duelOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>7️⃣ Lucky 7</b><p>Two numbers. Hit 7 or 14.</p><input id="luckyBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('lucky7')">ROLL</button><div id="luckyOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🃏 Mini Baccarat</b><p>Pick a side and compare cards.</p><select id="bacChoice"><option value="player">Player</option><option value="banker">Banker</option><option value="tie">Tie</option></select><input id="bacBet" type="number" value="25" min="1"><button class="btn" onclick="extraGame('baccarat')">DEAL</button><div id="bacOut" class="miniOut"></div></div>
+      <div class="arcadeCard"><b>🔢 Keno</b><p>Pick numbers 1–40. Separate picks with spaces.</p><input id="kenoPicks" placeholder="1 7 12 24 33"><input id="kenoBet" type="number" value="10" min="1"><button class="btn" onclick="extraGame('keno')">DRAW</button><div id="kenoOut" class="miniOut"></div></div>
+    </div>
+  </section>
+
+  <section id="profile" class="panel">
+    <h2>✨ Profile Studio</h2>
+    <p class="muted">Build a profile with animated frames, name effects, colors, badges, titles and moving banners.</p>
+    <div class="profilePreview" id="profilePreview"><div class="profileAvatar frame-neon-orbit" id="profileAvatar">MR</div><div><div id="profileNamePreview" class="profileName gradient glow">Your Name</div><div id="profileTitlePreview" class="profileTitle">Rookie</div></div></div>
+    <div class="customGrid">
+      <label>Frame<select id="profFrame"></select></label>
+      <label>Name style<select id="profStyle"></select></label>
+      <label>Name color<input id="profColor" type="color" value="#ffd166"></label>
+      <label>Effect<select id="profEffect"></select></label>
+      <label>Banner<select id="profBanner"></select></label>
+      <label>Badge<select id="profBadge"></select></label>
+      <label>Title<input id="profTitle" maxlength="30" value="Rookie"></label>
+    </div>
+    <button class="btn saveProfileBtn" onclick="saveProfile()">SAVE PROFILE</button>
+    <div id="profileStatus" class="status">Customize your look and save it online.</div>
+  </section>
+
+  <section id="gartic" class="panel">
+    <h2>🎨 Gartic Draw</h2>
+    <p class="muted">A quick multiplayer drawing battle: everyone draws the prompt, then players vote for their favorite.</p>
+    <div class="garticTop"><div><b>Prompt:</b> <span id="garticPrompt">Waiting for a round…</span></div><button class="btn adminOnly" onclick="startGartic()">NEW ROUND</button></div>
+    <canvas id="garticCanvas" class="garticCanvas" width="900" height="520"></canvas>
+    <div class="drawTools"><input id="drawColor" type="color" value="#ff4d6d"><input id="drawSize" type="range" min="2" max="35" value="8"><button class="btn" onclick="clearDrawing()">CLEAR</button><button class="btn good" onclick="submitDrawing()">SUBMIT DRAWING</button></div>
+    <div class="garticDrawings" id="garticDrawings"></div>
+    <div id="garticStatus" class="status">Draw when the round is live, then submit.</div>
+  </section>
+
+  <section id="admin" class="panel adminOnly">
+    <h2>Admin Panel</h2>
+    <p class="muted">Restricted to the Mr.Russian account in this demo.</p>
+    <div class="adminGrid">
+      <div class="adminCard">
+        <h3>Account</h3>
+        <p>Current user: <strong id="adminUser">—</strong></p>
+        <p>Admin access: <strong>Mr.Russian only</strong></p>
+      </div>
+      <div class="adminCard">
+        <h3>Free Coin Timer</h3>
+        <p>Every 30 seconds, the signed-in player receives <strong>15 free coins</strong>.</p>
+        <p id="coinTimerText">Next bonus: 30s</p>
+      </div>
+      <div class="adminCard">
+        <h3>Games</h3>
+        <p>Blackjack, Coin Flip, Mines, Roulette, Dice Roll, Slots, and Higher or Lower are available.</p>
+      </div>
+      <div class="adminCard">
+        <h3>Admin Controls</h3>
+        <div class="row" style="margin:10px 0 0">
+          <button class="btn" onclick="adminAddCoins()">Add 500 Coins</button>
+          <button class="btn" onclick="adminResetBalance()">Reset Balance</button>
+        </div>
+      </div>
+      <div class="adminCard">
+        <h3>Player Moderation</h3>
+        <input id="banUsername" placeholder="Username" autocomplete="off">
+        <input id="banReason" placeholder="Reason (optional)" autocomplete="off">
+        <div class="row" style="margin:10px 0 0">
+          <button class="btn" onclick="adminBanPlayer()">Ban Player</button>
+          <button class="btn" onclick="adminUnbanPlayer()">Unban Player</button>
+        </div>
+        <p class="muted" style="margin-top:8px">Ban blocks the account plus the player's last recorded IP/device token. A browser cannot provide a reliable true hardware ID.</p>
+      </div>
+    </div>
+    <h3>Admin Activity</h3>
+    <div id="adminLog" class="adminLog"><div>Admin panel ready.</div></div>
+    <h3>Current Bans</h3>
+    <div id="banList" class="adminLog"><div>Loading bans...</div></div>
+  </section>
+
+  <div class="sideGrid">
+    <section class="leaderBox" style="grid-column:1 / -1">
+      <h3 style="margin-top:0">Leaderboard</h3>
+      <div id="leaderboard"></div>
+    </section>
+  </div>
+</div>
+
+<script>
+/* Safe storage: uses localStorage when the page is allowed to, otherwise keeps data in memory so sign in/up still work */
+const store=(()=>{const mem={};let ok=false;try{window.localStorage.setItem('__t','1');window.localStorage.removeItem('__t');ok=true}catch(e){}
+return{
+getItem:k=>{if(ok){try{return window.localStorage.getItem(k)}catch(e){}}return Object.prototype.hasOwnProperty.call(mem,k)?mem[k]:null},
+setItem:(k,v)=>{mem[k]=String(v);if(ok){try{window.localStorage.setItem(k,v)}catch(e){}}},
+removeItem:k=>{delete mem[k];if(ok){try{window.localStorage.removeItem(k)}catch(e){}}}
+}})();
+
+
+/* ONLINE: talks to the server for accounts, balance, leaderboard and chat */
+let me=null,TOKEN='',lastSaved=null,saveTimer=null,onlineTimers=null;
+async function api(path,body){
+  const opt={headers:{'Content-Type':'application/json','X-Casino-Request':'1'}};
+  if(TOKEN)opt.headers.Authorization='Bearer '+TOKEN;
+  if(body!==undefined){opt.method='POST';opt.body=JSON.stringify(body)}
+  let res;try{res=await fetch(path,opt)}catch(e){throw new Error('Could not reach the server. Check your connection.')}
+  let data={};try{data=await res.json()}catch(e){}
+  if(!res.ok){const er=new Error(data.error||'Something went wrong.');er.status=res.status;throw er}
+  return data;
+}
+function scheduleSave(){}
+async function syncServerBalance(){if(!me)return;try{const r=await api('/api/me');if(r.user&&Number.isFinite(Number(r.user.balance))){balance=Number(r.user.balance);lastSaved=balance;document.getElementById('balance').textContent=Math.floor(balance);if(me.admin!==r.user.admin)me.admin=r.user.admin}}catch(e){if(e.status===401)location.reload()}}
+function startOnline(){
+  if(onlineTimers)return;
+  loadLeaderboard();pollChat();syncServerBalance();if(me&&me.admin)loadBans();
+  onlineTimers=[setInterval(pollChat,2500),setInterval(loadLeaderboard,10000),setInterval(syncServerBalance,5000)];
+}
+let balance = 1000;
+function updateBalance(){document.getElementById('balance').textContent=Math.floor(balance)}
+function validBet(id){
+  const n = Math.floor(Number(document.getElementById(id).value));
+  if(!Number.isFinite(n)||n<1){alert('Enter a bet of at least 1 coin.');return null}
+  if(n>balance){alert('Not enough fictional coins.');return null}
+  return n;
+}
+function showTab(id,btn){
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
+}
+
+/* BLACKJACK */
+let deck=[], player=[], dealer=[], bjBet=0, bjActive=false;
+const suits=['♠','♥','♦','♣'], ranks=['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+function makeDeck(){
+  let d=[]; for(const s of suits)for(const r of ranks)d.push({r,s});
+  for(let i=d.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[d[i],d[j]]=[d[j],d[i]]}
+  return d;
+}
+function value(hand){
+  let total=0,aces=0;
+  for(const c of hand){if(c.r==='A'){aces++;total+=11}else if(['J','Q','K'].includes(c.r))total+=10;else total+=Number(c.r)}
+  while(total>21&&aces){total-=10;aces--}
+  return total;
+}
+function renderCards(id,hand,hideSecond=false){
+  const el=document.getElementById(id);
+  const oldCards=[...el.children];
+  el.innerHTML='';
+  hand.forEach((c,i)=>{
+    const d=document.createElement('div');
+    const wasHidden=oldCards[i]?.textContent==='🂠';
+    const isHidden=hideSecond&&i===1;
+    d.className='card';
+    d.textContent=isHidden?'🂠':c.r+c.s;
+    if(i>=oldCards.length){
+      d.classList.add('deal-in');
+      d.style.animationDelay=(i*70)+'ms';
+    }else if(wasHidden&&!isHidden){
+      d.classList.add('flip-in');
+    }
+    el.appendChild(d);
+  });
+}
+async function bjDeal(){
+  if(bjActive)return; const b=validBet('bjBet');if(!b)return;
+  try{const r=await api('/api/game',{action:'bj_start',bet:b});bjBet=b;bjActive=true;balance=r.balance;deck=[];player=r.player;dealer=r.dealer;updateBalance();renderCards('playerCards',player);renderCards('dealerCards',dealer,true);document.getElementById('bjStatus').textContent='Your total: '+value(player);if(r.blackjack)await bjStand()}catch(e){alert(e.message)}
+}
+async function bjHit(){
+  if(!bjActive)return;try{const r=await api('/api/game',{action:'bj_hit'});player=r.player;dealer=r.dealer;balance=r.balance;renderCards('playerCards',player);renderCards('dealerCards',dealer,true);document.getElementById('bjStatus').textContent=r.done?r.message:'Your total: '+value(player);if(r.done){bjActive=false;renderCards('dealerCards',dealer);r.result==='win'?showGameResult('win',`2.00× • +${r.payout} coins`):showGameResult(r.result==='push'?'win':'lose',r.result==='push'?'1.00× • Bet returned':`Lost ${bjBet} coins`)}updateBalance()}catch(e){alert(e.message)}}
+async function bjStand(){
+  if(!bjActive)return;try{const r=await api('/api/game',{action:'bj_stand'});player=r.player;dealer=r.dealer;balance=r.balance;bjActive=false;renderCards('playerCards',player);renderCards('dealerCards',dealer);document.getElementById('bjStatus').textContent=`${r.message} You ${r.value} • Dealer ${r.dealerValue}`;if(r.result==='win')showGameResult('win',`2.00× • +${r.payout} coins`);else if(r.result==='push')showPushResult('1.00× • Bet returned');else showGameResult('lose',`Lost ${bjBet} coins`);updateBalance()}catch(e){alert(e.message)}}
+
+/* COIN FLIP */
+async function flipCoin(choice){const b=validBet('cfBet');if(!b)return;try{const r=await api('/api/game',{action:'coinflip',bet:b,choice});balance=r.balance;document.getElementById('coin').textContent=r.result==='Heads'?'H':'T';if(r.payout){document.getElementById('cfStatus').textContent=`${r.result}! You won ${r.payout-b} coins.`;showGameResult('win',`2.00× • +${r.payout} coins`)}else{document.getElementById('cfStatus').textContent=`${r.result}. You lost ${b} coins.`;showGameResult('lose',`Lost ${b} coins`)}updateBalance()}catch(e){alert(e.message)}}
+
+/* MINES */
+let minesActive=false,minesSet=new Set(),opened=new Set(),minesBet=0,minesN=3;
+async function startMines(){if(minesActive)return;const b=validBet('mineBet');if(!b)return;const n=Number(document.getElementById('mineCount').value);try{const r=await api('/api/game',{action:'mines_start',bet:b,mines:n});minesBet=b;minesN=n;balance=r.balance;minesActive=true;opened.clear();minesSet.clear();const grid=document.getElementById('mineGrid');grid.innerHTML='';for(let i=0;i<25;i++){const c=document.createElement('button');c.className='cell';c.textContent='?';c.onclick=()=>openMine(i,c);grid.appendChild(c)}document.getElementById('mineStatus').textContent='Round started. Choose a tile.';updateBalance()}catch(e){alert(e.message)}}
+function mineMultiplier(){const safe=25-minesN;let mult=1;for(let k=0;k<opened.size;k++)mult*=(25-k)/(safe-k);return Math.max(1,mult*0.96)}
+async function openMine(i,cell){if(!minesActive||opened.has(i))return;try{const r=await api('/api/game',{action:'mines_open',index:i});if(r.mine){cell.classList.add('mine');cell.textContent='💣';minesActive=false;minesSet=new Set(r.mines||[]);revealMines();document.getElementById('mineStatus').textContent='Mine hit. Round lost.';showGameResult('lose',`Lost ${minesBet} coins`)}else{opened.add(i);cell.classList.add('safe');cell.textContent='✓';if(r.done){minesActive=false;minesSet=new Set(r.mines||[]);revealMines();balance=r.balance;showGameResult('win',`${r.mult.toFixed(2)}× • +${r.payout} coins`);document.getElementById('mineStatus').textContent=`Cashed out for ${r.payout} fictional coins.`}else document.getElementById('mineStatus').textContent=`Safe! Current multiplier: ${r.mult.toFixed(2)}×`}}catch(e){alert(e.message);return}updateBalance()}
+async function cashOutMines(){if(!minesActive||opened.size===0)return;try{const r=await api('/api/game',{action:'mines_cashout'});balance=r.balance;minesActive=false;minesSet=new Set(r.mines||[]);revealMines();showGameResult('win',`${r.mult.toFixed(2)}× • +${r.payout} coins`);document.getElementById('mineStatus').textContent=`Cashed out for ${r.payout} fictional coins.`;updateBalance()}catch(e){alert(e.message)}}
+function revealMines(){[...document.querySelectorAll('.cell')].forEach((c,i)=>{if(minesSet.has(i)){c.classList.add('mine');c.textContent='💣'}})}
+
+function doubleBet(id){
+  const input=document.getElementById(id);
+  input.value=Math.min(balance,Math.max(1,Math.floor(Number(input.value)||1)*2));
+}
+function allBet(id){document.getElementById(id).value=Math.max(1,Math.floor(balance));}
+
+let rouletteChoice=null, rouletteRotation=0;
+const rouletteNumbers=[0,32,15,19,4,21,2,25,17,34,6,27,13,36,11,30,8,23,10,5,24,16,33,1,20,14,31,9,22,18,29,7,28,12,35,3,26];
+const redNums=new Set([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]);
+function chooseRoulette(c){
+  rouletteChoice=c;
+  document.querySelectorAll('.rChoice').forEach(x=>x.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+  document.getElementById('rouletteStatus').textContent='Selected '+c+'. Press SPIN.';
+}
+async function spinRoulette(){if(rouletteChoice===null){document.getElementById('rouletteStatus').textContent='Pick red, black, or green first.';return}const b=validBet('rouletteBet');if(!b)return;try{const r=await api('/api/game',{action:'roulette',bet:b,choice:rouletteChoice});const stage=document.getElementById('rouletteStage'),wheel=document.getElementById('rouletteWheel');stage.classList.add('spinning');wheel.classList.add('spinning');const idx=rouletteNumbers.indexOf(r.number);rouletteRotation+=1440+(360-idx*(360/37));wheel.style.transform='rotate('+rouletteRotation+'deg)';document.getElementById('rouletteStatus').textContent='Spinning...';setTimeout(()=>{stage.classList.remove('spinning');let won=r.payout>0;document.getElementById('rouletteStatus').textContent=`${r.number} ${r.color.toUpperCase()}${won?'! You won '+r.payout+' coins.':'. You lost '+b+' coins.'}`;won?showGameResult('win',`${r.choice==='green'?'14.00':'2.00'}× • +${r.payout} coins`):showGameResult('lose',`Lost ${b} coins`);balance=r.balance;updateBalance()},4600)}catch(e){alert(e.message)}}
+function addLeaderboardWin(){}
+async function loadLeaderboard(){
+  try{
+    const r=await api('/api/leaderboard');
+    document.getElementById('leaderboard').innerHTML=r.top.length?r.top.map((x,i)=>
+      `<div class="leaderRow"><b>#${i+1}</b><span>${escapeChat(x.name)}${me&&me.username===x.name?' (you)':''}</span><strong>${Math.floor(x.coins).toLocaleString()}</strong></div>`
+    ).join(''):'<div class="muted">No players yet. Sign up and play!</div>';
+  }catch(e){}
+}
+function renderLeaderboard(){loadLeaderboard()}
+
+/* EXTRA GAMES */
+const slotSymbols=['🍒','🍋','🔔','⭐','7️⃣','💎'];
+async function rollDice(){const b=validBet('diceBet');if(!b)return;const pick=Number(document.getElementById('dicePick').value);try{const r=await api('/api/game',{action:'dice',bet:b,pick});balance=r.balance;document.getElementById('diceResult').textContent=r.result;if(r.payout){document.getElementById('diceStatus').textContent=`You rolled ${r.result}! You won ${r.payout} coins.`;showGameResult('win',`5.00× • +${r.payout} coins`)}else{document.getElementById('diceStatus').textContent=`You rolled ${r.result}. You lost ${b} coins.`;showGameResult('lose',`Lost ${b} coins`)}updateBalance()}catch(e){alert(e.message)}}
+async function spinSlots(){const b=validBet('slotsBet');if(!b)return;try{const r=await api('/api/game',{action:'slots',bet:b});balance=r.balance;document.getElementById('slotResult').textContent=r.reels.join(' ');const payout=r.payout;document.getElementById('slotsStatus').textContent=payout?`Nice! You won ${payout} coins.`:`No match. You lost ${b} coins.`;payout?showGameResult('win',`${(payout/b).toFixed(2)}× • +${payout} coins`):showGameResult('lose',`Lost ${b} coins`);updateBalance()}catch(e){alert(e.message)}}
+let hlCurrent=0,hlActive=false,hlBetAmount=0;
+async function startHigherLower(){const b=validBet('hlBet');if(!b)return;try{const r=await api('/api/game',{action:'hl_start',bet:b});balance=r.balance;hlBetAmount=b;hlCurrent=r.current;hlActive=true;document.getElementById('hlCurrent').textContent=hlCurrent;document.getElementById('hlStatus').textContent='Guess higher or lower.';updateBalance()}catch(e){alert(e.message)}}
+async function guessHigherLower(choice){if(!hlActive){document.getElementById('hlStatus').textContent='Start a round first.';return}try{const r=await api('/api/game',{action:'hl_guess',choice});balance=r.balance;hlActive=false;document.getElementById('hlCurrent').textContent=r.next;if(r.next===r.old){document.getElementById('hlStatus').textContent=`Both cards were ${r.next}. Bet returned.`;showPushResult('1.00× • Bet returned')}else if(r.payout){document.getElementById('hlStatus').textContent=`${r.old} → ${r.next}. Correct! You won ${r.payout} coins.`;showGameResult('win','2.00× • +'+r.payout+' coins')}else{document.getElementById('hlStatus').textContent=`${r.old} → ${r.next}. Wrong guess.`;showGameResult('lose',`Lost ${hlBetAmount} coins`)}updateBalance()}catch(e){alert(e.message)}}
+
+/* 30-SECOND FREE 15-COIN BONUS */
+
+let bonusSeconds=30;
+async function giveFreeCoins(){
+  if(!me){bonusSeconds=30;return}
+  try{const r=await api('/api/game',{action:'bonus'});balance=r.balance;updateBalance()}catch(e){}
+  const log=document.getElementById('adminLog');
+  if(log) log.insertAdjacentHTML('afterbegin','<div>Free bonus: +15 coins awarded.</div>');
+  bonusSeconds=30;
+}
+setInterval(()=>{
+  bonusSeconds--;
+  if(bonusSeconds<=0)giveFreeCoins();
+  const el=document.getElementById('coinTimerText');
+  if(el)el.textContent=`Next bonus: ${bonusSeconds}s`;
+},1000);
+
+/* ADMIN-ONLY CONTROLS */
+function adminAction(){
+  return !!(me&&me.admin);
+}
+async function adminAddCoins(){
+  if(!adminAction())return;
+  try{const r=await api('/api/admin/self-balance',{mode:'add'});balance=r.balance;updateBalance()}catch(e){alert(e.message)}
+  document.getElementById('adminLog').insertAdjacentHTML('afterbegin','<div>Added 500 coins.</div>');
+}
+async function adminResetBalance(){
+  if(!adminAction())return;
+  try{const r=await api('/api/admin/self-balance',{mode:'reset'});balance=r.balance;updateBalance()}catch(e){alert(e.message)}
+  document.getElementById('adminLog').insertAdjacentHTML('afterbegin','<div>Balance reset to 100,000 coins.</div>');
+}
+async function loadBans(){
+  if(!adminAction())return;
+  try{const r=await api('/api/admin/bans');const el=document.getElementById('banList');el.innerHTML=r.bans.length?r.bans.map(b=>`<div><strong>${escapeChat(b.username_key)}</strong> — ${escapeChat(b.reason||'No reason')} <button class="btn" onclick="adminUnbanPlayer('${encodeURIComponent(b.username_key)}')">Unban</button></div>`).join(''):'<div>No active bans.</div>'}catch(e){document.getElementById('banList').textContent=e.message}
+}
+async function adminBanPlayer(){
+  if(!adminAction())return;const username=document.getElementById('banUsername').value.trim();const reason=document.getElementById('banReason').value.trim()||'Admin ban';if(!username)return alert('Enter a username.');
+  try{await api('/api/admin/ban',{username,reason});document.getElementById('adminLog').insertAdjacentHTML('afterbegin',`<div>Banned ${escapeChat(username)}.</div>`);loadBans()}catch(e){alert(e.message)}
+}
+async function adminUnbanPlayer(encoded){
+  if(!adminAction())return;let username=encoded?decodeURIComponent(encoded):document.getElementById('banUsername').value.trim();if(!username)return alert('Enter a username.');
+  try{await api('/api/admin/unban',{username});document.getElementById('adminLog').insertAdjacentHTML('afterbegin',`<div>Unbanned ${escapeChat(username)}.</div>`);loadBans()}catch(e){alert(e.message)}
+}
+function saveCurrentBalance(){scheduleSave()}
+
+document.getElementById('authForm').addEventListener('keydown',ev=>{if(ev.key==='Enter'){ev.preventDefault();submitAuth(ev)}});
+let authMode='signin';
+function switchAuth(mode){
+  authMode=mode;const signup=mode==='signup';
+  document.getElementById('signInTab').classList.toggle('active',!signup);
+  document.getElementById('signUpTab').classList.toggle('active',signup);
+  document.getElementById('authSubmit').textContent=signup?'CREATE ACCOUNT':'SIGN IN';
+  document.getElementById('confirmLabel').style.display=signup?'block':'none';
+  document.getElementById('authConfirm').style.display=signup?'block':'none';
+  document.getElementById('authError').textContent='';
+}
+async function submitAuth(e){
+  if(e&&e.preventDefault)e.preventDefault();
+  const username=document.getElementById('authUser').value.trim();
+  const password=document.getElementById('authPass').value;
+  const error=document.getElementById('authError');error.textContent='';
+  if(!username||!password){error.textContent='Enter your username and password.';return}
+  if(authMode==='signup'){
+    if(username.length<3){error.textContent='Username must be at least 3 characters.';return}
+    if(password.length<6){error.textContent='Password must be at least 6 characters.';return}
+    if(password!==document.getElementById('authConfirm').value){error.textContent='Passwords do not match.';return}
+  }
+  const btn=document.getElementById('authSubmit');btn.disabled=true;
+  try{
+    const r=await api(authMode==='signup'?'/api/signup':'/api/login',{username,password});
+    TOKEN='';
+    enterAccount(r.user.username,r.user.admin,r.user.balance);
+  }catch(err){error.textContent=err.message}
+  btn.disabled=false;
+}
+function enterAccount(username,isAdmin,startBalance){
+  me={username,admin:!!isAdmin};
+  document.getElementById('authOverlay').style.display='none';
+  document.getElementById('userDisplay').textContent=username;
+  document.getElementById('adminBadge').style.display=isAdmin?'inline-block':'none';
+  document.getElementById('adminTab').style.display=isAdmin?'block':'none';
+  document.getElementById('admin').style.display='none';
+  document.getElementById('adminUser').textContent=isAdmin?username:'—';
+  const nav=document.getElementById('easyAdminNav');if(nav)nav.style.display=isAdmin?'block':'none';
+  lastSaved=Math.floor(startBalance);balance=startBalance;updateBalance();
+  startOnline();
+}
+async function restoreSession(){
+  if(!TOKEN)return;
+  try{const r=await api('/api/me');enterAccount(r.user.username,r.user.admin,r.user.balance)}
+  catch(e){if(e.status===401){TOKEN='';store.removeItem('mrToken')}}
+}
+restoreSession();
+updateBalance();
+
+/* ADMIN CONTROL CENTER */
+let adminAccounts={};
+function getStoredAccounts(){return adminAccounts}
+function adminGuard(){
+  return !!(me&&me.admin);
+}
+function openAdminUI(){
+  if(!adminGuard()) return;
+  document.getElementById('adminControlModal').classList.add('show');
+  refreshAdminUI();
+}
+function closeAdminUI(){
+  document.getElementById('adminControlModal').classList.remove('show');
+}
+async function refreshAdminUI(){
+  if(!adminGuard())return;
+  try{const r=await api('/api/admin/users');adminAccounts={};r.users.forEach(u=>{adminAccounts[u.username]={balance:u.balance}})}catch(e){}
+  document.getElementById('adminUserCount').textContent=Object.keys(adminAccounts).length;
+  document.getElementById('adminBalanceStat').textContent=Number(balance||0).toLocaleString();
+  renderAdminUsers();renderAdminActivity();
+}
+function renderAdminUsers(){
+  const wrap=document.getElementById('adminUsers');
+  if(!wrap) return;
+  const q=(document.getElementById('adminUserSearch').value||'').toLowerCase();
+  const accounts=getStoredAccounts();
+  const entries=Object.entries(accounts).filter(([u])=>u.toLowerCase().includes(q));
+  if(!entries.length){
+    wrap.innerHTML='<div style="color:#8b7c70;padding:12px 0">No regular players found.</div>';
+    return;
+  }
+  wrap.innerHTML=entries.map(([u,data])=>{
+    const bal=Number(data.balance ?? 0);
+    return `<div class="adminUserRow">
+      <span class="userName">${escapeHtmlAdmin(u)}</span>
+      <span class="userBalance">${bal.toLocaleString()} coins</span>
+      <button class="adminBtn secondary" onclick="selectAdminUser('${encodeURIComponent(u)}')">Manage</button>
+    </div>`;
+  }).join('');
+}
+function selectAdminUser(encoded){
+  document.getElementById('adminTargetUser').value=decodeURIComponent(encoded);
+  document.getElementById('adminAmount').focus();
+}
+async function adminChangeBalance(mult){
+  if(!adminGuard())return;
+  const username=document.getElementById('adminTargetUser').value.trim();
+  const amount=Math.abs(Number(document.getElementById('adminAmount').value));
+  if(!username||!Number.isFinite(amount))return alert('Enter a username and amount.');
+  const acc=adminAccounts[username];if(!acc)return alert('That player does not exist.');
+  try{await api('/api/admin/balance',{username,balance:Math.max(0,Number(acc.balance||0)+amount*mult)});
+    adminWriteLog(`${mult>0?'Added':'Removed'} ${amount.toLocaleString()} coins ${mult>0?'to':'from'} ${username}.`);
+  }catch(e){alert(e.message)}
+  refreshAdminUI();
+}
+async function adminSetBalance(){
+  if(!adminGuard())return;
+  const username=document.getElementById('adminTargetUser').value.trim();
+  const amount=Number(document.getElementById('adminAmount').value);
+  if(!username||!Number.isFinite(amount)||amount<0)return alert('Enter a username and a valid non-negative balance.');
+  if(!adminAccounts[username])return alert('That player does not exist.');
+  try{await api('/api/admin/balance',{username,balance:amount});adminWriteLog(`Set ${username}'s balance to ${amount.toLocaleString()} coins.`)}
+  catch(e){alert(e.message)}
+  refreshAdminUI();
+}
+function adminWriteLog(message){
+  const logs=JSON.parse(store.getItem('mrAdminLogs')||'[]');
+  logs.unshift({time:new Date().toLocaleString(),message});
+  store.setItem('mrAdminLogs',JSON.stringify(logs.slice(0,50)));
+  renderAdminActivity();
+}
+function renderAdminActivity(){
+  const el=document.getElementById('adminActivity');
+  if(!el) return;
+  const logs=JSON.parse(store.getItem('mrAdminLogs')||'[]');
+  el.innerHTML=logs.length ? logs.map(x=>`<div class="adminLogLine"><b>${escapeHtmlAdmin(x.time)}</b> — ${escapeHtmlAdmin(x.message)}</div>`).join('') : '<div style="color:#8b7c70">No admin actions yet.</div>';
+}
+function escapeHtmlAdmin(s){
+  return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+
+/* Make the existing Admin Panel tab open the control center. */
+document.addEventListener('DOMContentLoaded',()=>{
+  const tab=document.getElementById('adminTab');
+  if(tab){
+    tab.onclick=(e)=>{ e.preventDefault(); openAdminUI(); };
+  }
+});
+
+
+/* DISCORD-STYLE MULTI-CHANNEL CHAT */
+const CHAT_CHANNELS = ['general','gaming','casino','memes','announcements'];
+let activeChatChannel = store.getItem('mrChatChannel') || 'general';
+
+const chatCache={};let chatLast=0,chatOnline=[],chatFirst=true;
+function getChatMessages(c){return chatCache[c]||(chatCache[c]=[])}
+function currentChatUser(){return me?me.username:'Guest'}
+function switchChatChannel(channel){
+  if(!CHAT_CHANNELS.includes(channel)) return;
+  activeChatChannel = channel;
+  store.setItem('mrChatChannel', channel);
+  document.querySelectorAll('.chatChannel').forEach(btn=>{
+    btn.classList.toggle('active', btn.dataset.channel === channel);
+  });
+  const title=document.getElementById('chatChannelTitle');
+  const input=document.getElementById('chatInput');
+  if(title) title.textContent=channel;
+  if(input) input.placeholder='Message #' + channel;
+  renderChatMessages();
+}
+function showChatToast(user,text,channel){
+  let wrap=document.getElementById('chatToastWrap');
+  if(!wrap){
+    wrap=document.createElement('div');
+    wrap.id='chatToastWrap';
+    wrap.className='chatToastWrap';
+    document.body.appendChild(wrap);
+  }
+  const toast=document.createElement('div');
+  toast.className='chatToast';
+  toast.innerHTML='<b>#'+escapeChat(channel)+' • '+escapeChat(user)+'</b><span>'+escapeChat(text)+'</span>';
+  wrap.appendChild(toast);
+  setTimeout(()=>toast.remove(),3700);
+}
+async function sendChatMessage(){
+  const input=document.getElementById('chatInput');if(!input)return;
+  const text=input.value.trim();if(!text)return;
+  if(!me){showChatToast('System','Sign in to chat.','general');return}
+  const channel=activeChatChannel||'general';input.value='';
+  try{const r=await api('/api/chat',{channel,text});addChatMsgs([r.message],false,false)}
+  catch(e){showChatToast('System',e.message,channel);input.value=text}
+}
+function addChatMsgs(msgs,toast,advance){
+  let changed=false;
+  for(const m of msgs){
+    const a=getChatMessages(m.channel);if(a.some(x=>x.id===m.id))continue;
+    a.push(m);if(a.length>100)a.shift();changed=true;
+    if(advance)chatLast=Math.max(chatLast,m.id);
+    if(toast&&me&&m.user!==me.username)showChatToast(m.user,m.text,m.channel);
+  }
+  if(changed)renderChatMessages();
+}
+async function pollChat(){
+  if(!me)return;
+  try{const r=await api('/api/chat?after='+chatLast);addChatMsgs(r.messages,!chatFirst,true);chatFirst=false;chatOnline=r.online;renderChatMembers()}catch(e){}
+}
+function renderChatMessages(){
+  const box=document.getElementById('chatMessages');if(!box)return;
+  const messages=getChatMessages(activeChatChannel);
+  const stick=box.scrollHeight-box.scrollTop-box.clientHeight<80;
+  if(!messages.length){
+    box.innerHTML='<div style="color:#a99a8c;padding:25px 0">Welcome to #'+escapeChat(activeChatChannel)+'! Start the conversation.</div>';
+  }else{
+    box.innerHTML=messages.map(m=>`<div class="chatMessage">
+      <div class="chatAvatar">${escapeChat((m.user||'?').charAt(0).toUpperCase())}</div>
+      <div class="chatMessageBody">
+        <div class="chatMessageTop"><span class="chatAuthor">${escapeChat(m.user)}</span><span class="chatTime">${escapeChat(new Date(m.t).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}))}</span></div>
+        <div class="chatText">${escapeChat(m.text)}</div>
+      </div></div>`).join('');
+  }
+  if(stick)box.scrollTop=box.scrollHeight;
+}
+function renderChatMembers(){
+  const list=document.getElementById('chatMembersList');if(!list)return;
+  const users=chatOnline.length?chatOnline:(me?[me.username]:[]);
+  document.getElementById('chatMemberCount').textContent=users.length;
+  list.innerHTML=users.map(u=>`<div class="chatMember"><span class="chatMemberDot"></span>${escapeChat(u)}</div>`).join('');
+}
+function escapeChat(s){
+  return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+}
+document.addEventListener('DOMContentLoaded', ()=>{
+  switchChatChannel(activeChatChannel);
+});
+
+
+/* SIMPLE NAVIGATION HELPERS */
+function easyScrollTo(id){
+  const el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function easyGoHome(){ window.scrollTo({top:0,behavior:'smooth'}); }
+function easyGoGames(){
+  const target=document.querySelector('.tabs') || document.querySelector('.gameTabs') || document.querySelector('[role="tablist"]');
+  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  else window.scrollTo({top:0,behavior:'smooth'});
+}
+function easyGoChat(){ easyScrollTo('chat'); }
+function easyGoTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+
+window.addEventListener('scroll',()=>{
+  const b=document.querySelector('.pageTopBtn');
+  if(b) b.classList.toggle('show',window.scrollY>450);
+});
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const top=document.createElement('button');
+  top.className='pageTopBtn';
+  top.className='pageTopBtn';
+  top.innerHTML='↑';
+  top.title='Back to top';
+  top.setAttribute('aria-label','Back to top');
+  top.onclick=easyGoTop;
+  document.body.appendChild(top);
+
+  const admin=document.getElementById('easyAdminNav');
+  
+});
+
+
+function showGameResult(type, detail){
+  let o=document.getElementById('gameResultOverlay');
+  if(!o){
+    o=document.createElement('div'); o.id='gameResultOverlay'; o.className='result-overlay';
+    o.innerHTML='<div class="result-card"><div class="result-title"></div><div class="result-detail"></div></div>';
+    document.body.appendChild(o);
+  }
+  o.className='result-overlay '+type;
+  o.querySelector('.result-title').textContent=type==='win'?'🎉 YOU WIN!':'💥 YOU LOSE!';
+  o.querySelector('.result-detail').textContent=detail;
+  void o.offsetWidth; o.classList.add('show');
+  clearTimeout(window.__resultTimer);
+  window.__resultTimer=setTimeout(()=>o.classList.remove('show'),1000);
+}
+function showPushResult(detail){ showGameResult('win',detail); }
+
+/* RISK TAKER — fictional play-money game */
+let riskActive=false,riskWinningSquare=-1,riskBet=0;
+async function startRiskTaker(){if(riskActive)return;if(balance<=0){document.getElementById('riskStatus').textContent='You have no fictional coins left.';return}try{const r=await api('/api/game',{action:'risk_start'});riskBet=balance;balance=r.balance;riskActive=true;const grid=document.getElementById('riskGrid');grid.innerHTML='';for(let i=0;i<9;i++){const c=document.createElement('button');c.className='riskCell';c.textContent='?';c.onclick=()=>pickRiskSquare(i,c);grid.appendChild(c)}document.getElementById('riskStart').disabled=true;document.getElementById('riskStatus').textContent='ALL IN placed. Choose 1 of the 9 squares.';updateBalance()}catch(e){alert(e.message)}}
+async function pickRiskSquare(i,cell){if(!riskActive)return;try{const r=await api('/api/game',{action:'risk_pick',index:i});riskActive=false;const cells=[...document.querySelectorAll('.riskCell')];cells.forEach((c,n)=>{c.disabled=true;if(n===r.winning){c.classList.add('win');c.textContent='50×'}else{c.classList.add('lose');c.textContent='0×'}});balance=r.balance;if(r.payout){document.getElementById('riskStatus').textContent=`50×! You won ${r.payout} fictional coins.`;showGameResult('win',`50.00× • +${r.payout} coins`)}else{document.getElementById('riskStatus').textContent=`Nothing there. You lost your ${riskBet} fictional coins.`;showGameResult('lose',`Lost ${riskBet} coins`)}riskBet=0;updateBalance();document.getElementById('riskStart').disabled=false}catch(e){alert(e.message)}}
+/* RUSSIAN ROULETTE — fictional play-money game */
+let rrReady=false,rrBusy=false,rrBet=0;
+async function rrSpinCylinder(){if(rrBusy)return;if(rrBet<=0){const b=validBet('rrBet');if(!b)return;try{const r=await api('/api/game',{action:'rr_start',bet:b});rrBet=b;balance=r.balance;updateBalance()}catch(e){alert(e.message);return}}rrBusy=true;rrReady=false;document.getElementById('rrSpin').disabled=true;document.getElementById('rrPlay').disabled=true;document.getElementById('rrStatus').textContent='Cylinder spinning…';const cyl=document.getElementById('rrCylinder');cyl.classList.remove('spinning');void cyl.offsetWidth;cyl.classList.add('spinning');setTimeout(()=>{rrReady=true;rrBusy=false;document.getElementById('rrSpin').disabled=false;document.getElementById('rrPlay').disabled=false;document.getElementById('rrStatus').textContent='Ready. You can SPIN again or TAKE TURN.'},2800)}
+async function rrTakeTurn(){if(!rrReady||rrBusy)return;rrReady=false;rrBusy=true;document.getElementById('rrPlay').disabled=true;try{const r=await api('/api/game',{action:'rr_turn'});balance=r.balance;if(r.win){document.getElementById('rrStatus').textContent=`Click! Safe result. You won ${r.payout} fictional coins.`;showGameResult('win',`2.00× • +${r.payout} coins`)}else{document.getElementById('rrCylinder').classList.add('rrLose');document.getElementById('rrStatus').textContent='BANG! Game over — your fictional bet is lost.';showRRGameOver();showGameResult('lose',`Lost ${rrBet} coins`)}rrBet=0;updateBalance();setTimeout(()=>{document.getElementById('rrSpin').disabled=false;document.getElementById('rrCylinder').classList.remove('rrLose');rrBusy=false},800)}catch(e){alert(e.message);rrBusy=false;document.getElementById('rrSpin').disabled=false}}
+function showRRGameOver(){
+  let o=document.getElementById('rrGameOver');
+  if(!o){
+    o=document.createElement('div'); o.id='rrGameOver'; o.className='rrOverlay';
+    o.innerHTML='<div class="rrOverlayCard"><div class="rrBang">BANG!</div><h2>GAME OVER</h2><p>The fictional round ended here. No real-world action is involved.</p><button class="rrOverlayClose" onclick="document.getElementById(\'rrGameOver\').classList.remove(\'show\')">Close</button></div>';
+    document.body.appendChild(o);
+  }
+  o.classList.remove('show'); void o.offsetWidth; o.classList.add('show');
+}
+
+/* PLINKO V3 — stable server-resolved animation */
+(function(){
+ const cv=document.getElementById('plinkoCanvas'); if(!cv)return;
+ const ctx=cv.getContext('2d'); const W=720,H=520,dpr=Math.min(devicePixelRatio||1,2);
+ const mults=[10,5,2,1,.5,.3,.5,1,2,5,10]; let auto=false,autoT=0,busy=false,balls=[];
+ cv.width=W*dpr;cv.height=H*dpr;cv.style.width='100%';cv.style.maxWidth='720px';cv.style.height='auto';
+ const status=s=>document.getElementById('plinkoStatus').textContent=s;
+ const col=m=>m>=10?'#ff4d8d':m>=5?'#ffd166':m>=2?'#39d8ff':m>=1?'#7dff9a':'#9b6cff';
+ const slotX=i=>60+i*(W-120)/10;
+ function draw(t){
+  ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,W,H);
+  const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#171027');bg.addColorStop(1,'#090811');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  // rails
+  ctx.strokeStyle='rgba(57,216,255,.35)';ctx.lineWidth=3;ctx.strokeRect(10,10,W-20,H-20);
+  // pegs
+  for(let r=0;r<9;r++){const n=r+3,y=70+r*42;for(let i=0;i<n;i++){const x=W/2+(i-(n-1)/2)*52;ctx.fillStyle='#ffd166';ctx.shadowBlur=10;ctx.shadowColor='#ffd166';ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0}}
+  for(let i=0;i<11;i++){const x=slotX(i),m=mults[i];ctx.fillStyle=col(m);ctx.globalAlpha=.22;ctx.fillRect(x-29,425,58,70);ctx.globalAlpha=1;ctx.strokeStyle=col(m);ctx.strokeRect(x-29,425,58,70);ctx.fillStyle='#fff';ctx.font='900 15px Inter';ctx.textAlign='center';ctx.fillText(m+'×',x,466)}
+  for(const b of balls){const p=Math.min(1,(t-b.start)/b.duration),e=1-Math.pow(1-p,3),x=b.from+(b.to-b.from)*e,y=40+365*e+Math.sin(e*Math.PI*8)*10*(1-e);b.x=x;b.y=y;ctx.shadowBlur=22;ctx.shadowColor='#ff4d8d';ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(x,y,9,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0}
+  balls=balls.filter(b=>t-b.start<b.duration);
+  requestAnimationFrame(draw);
+ }
+ requestAnimationFrame(draw);
+ window.plinkoToggleAuto=function(){auto=!auto;const el=document.getElementById('plinkoAuto');el.classList.toggle('on',auto);el.textContent='AUTO: '+(auto?'ON':'OFF');if(auto)autoT=0};
+ window.plinkoDrop=async function(fromAuto){
+  if(busy)return;
+  const bet=Math.floor(Number(document.getElementById('plinkoBet').value));
+  if(!Number.isFinite(bet)||bet<1||bet>balance){if(fromAuto){plinkoToggleAuto()}else alert('Enter a valid Plinko bet.');return}
+  try{
+   busy=true;const r=await api('/api/game',{action:'plinko',bet});balance=r.balance;updateBalance();
+   const target=Math.max(0,Math.min(10,Number(r.slot)));const from=W/2;const to=slotX(target);
+   balls.push({from,to,start:performance.now(),duration:1300});
+   status('Ball is dropping…');
+   setTimeout(()=>{
+    const hist=document.getElementById('plinkoHist'),m=Number(r.mult),h=document.createElement('span');h.textContent=m+'×';h.style.color=col(m);h.style.borderColor=col(m);hist.prepend(h);while(hist.children.length>9)hist.lastChild.remove();
+    status(r.payout>bet?`Landed on ${m}× • +${r.payout-bet} coins`:r.payout===bet?'Landed on 1× • bet returned':`Landed on ${m}× • -${bet-r.payout} coins`);
+    if(r.payout>bet)showGameResult('win',m+'× • +'+(r.payout-bet)+' coins');else if(r.payout<bet)showGameResult('lose','Lost '+(bet-r.payout)+' coins');
+    busy=false;
+   },1320);
+  }catch(e){busy=false;alert(e.message)}
+ };
+ function autoLoop(){if(auto&&!busy){autoT-=16;if(autoT<=0){autoT=900;plinkoDrop(true)}}requestAnimationFrame(autoLoop)}
+ requestAnimationFrame(autoLoop);
+})();
+;
+</script>
+
+<div id="adminControlModal" class="adminModalBackdrop" onclick="if(event.target===this)closeAdminUI()">
+  <div class="adminModal">
+    <div class="adminModalHeader">
+      <h2>🛠️ Admin Control Center</h2>
+      <button class="adminClose" onclick="closeAdminUI()">✕</button>
+    </div>
+    <div class="adminModalBody">
+      <div class="adminStats">
+        <div class="adminStat"><small>Logged in as</small><strong id="adminWho">Mr.Russian</strong></div>
+        <div class="adminStat"><small>Users</small><strong id="adminUserCount">0</strong></div>
+        <div class="adminStat"><small>Admin balance</small><strong id="adminBalanceStat">0</strong></div>
+      </div>
+
+      <div class="adminTools">
+        <div class="adminBox">
+          <h3>👥 Player balances</h3>
+          <input id="adminUserSearch" class="adminInput" placeholder="Search username..." oninput="renderAdminUsers()">
+          <div id="adminUsers"></div>
+        </div>
+
+        <div class="adminBox">
+          <h3>⚙️ Player controls</h3>
+          <input id="adminTargetUser" class="adminInput" placeholder="Username">
+          <input id="adminAmount" class="adminInput" type="number" placeholder="Amount">
+          <div class="adminActions">
+            <button class="adminBtn green" onclick="adminChangeBalance(1)">+ Add</button>
+            <button class="adminBtn danger" onclick="adminChangeBalance(-1)">− Remove</button>
+            <button class="adminBtn secondary" onclick="adminSetBalance()">Set Balance</button>
+          </div>
+          <hr style="border:0;border-top:1px solid #2c211c;margin:16px 0">
+          <h3>🧰 Regular admin tools</h3>
+          <div class="adminActions">
+            <button class="adminBtn" onclick="adminAddCoins()">Give Myself 500</button>
+            <button class="adminBtn secondary" onclick="adminResetBalance()">Reset My Balance</button>
+            <button class="adminBtn secondary" onclick="renderAdminUsers()">Refresh Users</button>
+            <button class="adminBtn danger" onclick="adminExtraAction('logout-player')">Force Logout</button>
+            <button class="adminBtn secondary" onclick="adminExtraAction('reset-round')">Reset Active Game</button>
+            <button class="adminBtn" onclick="postAdminAnnouncement()">📣 Broadcast</button>
+            <button class="adminBtn secondary" onclick="startGartic()">🎨 New Gartic Round</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="adminBox" style="margin-top:16px">
+        <h3>📋 Admin activity</h3>
+        <div id="adminActivity" class="adminLogBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="quickTiles" aria-label="Quick navigation">
+  <button class="quickTile" onclick="easyGoGames()">
+    <strong>🎮 Play Games</strong>
+    <small>Jump straight to Blackjack, Roulette, Mines and more.</small>
+  </button>
+  <button class="quickTile" onclick="easyGoChat()">
+    <strong>💬 Community Chat</strong>
+    <small>Join #general or browse the other channels.</small>
+  </button>
+  <button class="quickTile" onclick="easyGoTop()">
+    <strong>⬆️ Back to Top</strong>
+    <small>Quickly return to the main casino controls.</small>
+  </button>
+</div>
+<button class="chatQuickButton" onclick="document.getElementById('chat').scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>document.getElementById('chatInput')?.focus(),500)">
+  <span class="chatQuickIcon">💬</span>
+  <span class="chatQuickText">COMMUNITY CHAT<span class="chatQuickSub">Join the conversation • General • Gaming • Casino • Memes • Announcements</span></span>
+  <span>➜</span>
+</button>
+<section id="chat" class="panel" style="display:block">
+  <h2>Community Chat</h2>
+  <div class="chatArea">
+    <aside class="chatChannels">
+      <div class="chatServerTitle">💬 MR.RUSSIANS</div>
+      <div class="chatCategory">TEXT CHANNELS</div>
+      <button class="chatChannel active" data-channel="general" onclick="switchChatChannel('general')"># general</button>
+      <button class="chatChannel" data-channel="gaming" onclick="switchChatChannel('gaming')"># gaming</button>
+      <button class="chatChannel" data-channel="casino" onclick="switchChatChannel('casino')"># casino</button>
+      <button class="chatChannel" data-channel="memes" onclick="switchChatChannel('memes')"># memes</button>
+      <button class="chatChannel" data-channel="announcements" onclick="switchChatChannel('announcements')"># announcements</button>
+    </aside>
+    <main class="chatMain">
+      <div class="chatHeader"><span style="font-size:20px;margin-right:8px">#</span><span id="chatChannelTitle" class="chatHeaderTitle">general</span></div>
+      <div id="chatMessages" class="chatMessages"></div>
+      <div class="chatInputBar"><div class="chatInputWrap"><input id="chatInput" class="chatInput" maxlength="500" placeholder="Message #general" onkeydown="if(event.key==='Enter')sendChatMessage()"><button class="chatSend" onclick="sendChatMessage()">Send</button></div></div>
+    </main>
+    <aside class="chatMembers"><div class="chatMembersTitle">ONLINE — <span id="chatMemberCount">1</span></div><div id="chatMembersList"></div></aside>
+  </div>
+</section>
+
+
+<script>
+/* V3 client upgrade */
+const V3_FRAMES=['neon-orbit','rainbow','fire','ice','galaxy','royal','electric','sunset','aqua','toxic','hologram','chrome','pixel','star','comet','prism','lava','void','bubble','golden'];
+const V3_STYLES=['gradient','gold','rainbow','neon','classic','bubble','chrome','fire','ice','pixel','royal','mono'];
+const V3_EFFECTS=['glow','none','pulse','bounce','shake','spark','shadow','scan','float','shine','flicker','orbit'];
+const V3_BANNERS=['aurora','sunset','ocean','galaxy','candy','fire','mint','royal','cyber','midnight','gold','rainbow','lava','ice','matrix','neon'];
+const V3_BADGES=['✦','♛','♜','★','☄','⚡','☀','☾','◆','◇','♠','♦','♥','♣','🎯','🎨','🎮','👑','💎','🔥'];
+function fillV3(){
+ const maps=[['profFrame',V3_FRAMES],['profStyle',V3_STYLES],['profEffect',V3_EFFECTS],['profBanner',V3_BANNERS],['profBadge',V3_BADGES]];
+ maps.forEach(([id,a])=>{const el=document.getElementById(id);if(el&&!el.options.length)a.forEach(x=>el.add(new Option(x.replaceAll('-',' '),x)))});
+}
+function applyProfile(p){
+ p=p||{};const f=p.frame||'neon-orbit',s=p.nameStyle||'gradient',e=p.effect||'glow';
+ const av=document.getElementById('profileAvatar');if(!av)return;
+ av.className='profileAvatar frame-'+f;av.textContent=(me?.username||'MR').slice(0,2).toUpperCase();
+ const nm=document.getElementById('profileNamePreview');nm.className='profileName '+s+' '+e;nm.textContent=me?.username||'Your Name';nm.style.color=p.nameColor||'#ffd166';
+ document.getElementById('profileTitlePreview').textContent=(p.badge||'✦')+' '+(p.title||'Rookie');
+ ['profFrame','profStyle','profEffect','profBanner','profBadge'].forEach((id)=>{const el=document.getElementById(id);if(el&&p[id])el.value=p[id]});
+ if(document.getElementById('profColor'))document.getElementById('profColor').value=p.nameColor||'#ffd166';
+ if(document.getElementById('profTitle'))document.getElementById('profTitle').value=p.title||'Rookie';
+}
+async function loadProfileUI(){fillV3();try{const r=await api('/api/profile');applyProfile(r.user.profile)}catch(e){}}
+async function saveProfile(){
+ const p={frame:profFrame.value,nameStyle:profStyle.value,nameColor:profColor.value,effect:profEffect.value,banner:profBanner.value,badge:profBadge.value,title:profTitle.value.trim()||'Rookie'};
+ try{const r=await api('/api/profile',{profile:p});me=r.user;applyProfile(p);document.getElementById('profileStatus').textContent='✨ Profile saved online.';loadLeaderboard()}catch(e){document.getElementById('profileStatus').textContent=e.message}
+}
+async function extraGame(action){
+ const ids={wheel:['wheelBet','wheelOut'],colorpick:['colorBet','colorOut'],tower:['towerBet','towerOut'],cups:['cupBet','cupOut'],limbo:['limboBet','limboOut'],dice_duel:['duelBet','duelOut'],lucky7:['luckyBet','luckyOut'],baccarat:['bacBet','bacOut'],keno:['kenoBet','kenoOut']};
+ const [bid,oid]=ids[action];const bet=Math.floor(Number(document.getElementById(bid).value));if(!Number.isFinite(bet)||bet<1||bet>balance)return alert('Enter a valid bet.');
+ const body={action,bet};if(action==='colorpick')body.choice=colorChoice.value;if(action==='tower')body.level=Number(towerLevel.value);if(action==='cups')body.choice=Number(cupChoice.value);if(action==='limbo')body.target=Number(limboTarget.value);if(action==='baccarat')body.choice=bacChoice.value;if(action==='keno')body.picks=kenoPicks.value.split(/[ ,]+/).map(Number).filter(Boolean);
+ try{const r=await api('/api/game',body);balance=r.balance;updateBalance();let text=JSON.stringify(r);if(r.payout>bet)text='🎉 WIN! +'+(r.payout-bet)+' coins';else if(r.payout===bet)text='↔️ BET RETURNED';else text='💥 Lost '+(bet-(r.payout||0))+' coins';document.getElementById(oid).textContent=text}catch(e){document.getElementById(oid).textContent=e.message}
+}
+
+function renderAdminUsers(){
+ const wrap=document.getElementById('adminUsers');if(!wrap)return;
+ const q=(document.getElementById('adminUserSearch').value||'').toLowerCase();
+ const entries=Object.entries(adminAccounts||{}).filter(([u])=>u.toLowerCase().includes(q));
+ wrap.innerHTML=entries.length?entries.map(([u,d])=>`<div class="adminUserRow"><span class="userName">${escapeHtmlAdmin(u)}</span><span class="userBalance">${Number(d.balance||0).toLocaleString()} coins</span><button class="adminBtn secondary" onclick="selectAdminUser('${encodeURIComponent(u)}')">Manage</button></div>`).join(''):'<div style="color:#8b7c70;padding:12px 0">No regular players found.</div>';
+}
+async function refreshLeaderBanner(){
+ try{const r=await api('/api/leaderboard');const top=r.top?.[0];document.getElementById('leaderBannerInner').textContent=top?`🏆 #1 LEADERBOARD • ${top.name} • ${Number(top.coins).toLocaleString()} COINS • ✦ ✦ ✦`:'🏆 #1 LEADERBOARD • Waiting for players';const lb=document.getElementById('leaderboard');if(lb)lb.innerHTML=r.top.map((x,i)=>`<div class="leaderRow"><span>#${i+1}</span><strong>${escapeHtmlAdmin(x.name)}</strong><span>${Number(x.coins).toLocaleString()} 🪙</span></div>`).join('')}catch(e){}
+}
+async function startGartic(){try{await api('/api/gartic/start',{});refreshGartic()}catch(e){alert(e.message)}}
+let gctx,gdrawing=false,gLast=null;
+function setupGartic(){
+ const c=document.getElementById('garticCanvas');if(!c||gctx)return;gctx=c.getContext('2d');gctx.fillStyle='#fff';gctx.fillRect(0,0,c.width,c.height);
+ const pos=e=>{const r=c.getBoundingClientRect(),p=e.touches?.[0]||e;return{x:(p.clientX-r.left)*c.width/r.width,y:(p.clientY-r.top)*c.height/r.height}};
+ const down=e=>{e.preventDefault();gdrawing=true;gLast=pos(e)};const move=e=>{if(!gdrawing)return;e.preventDefault();const p=pos(e),col=document.getElementById('drawColor').value,size=Number(document.getElementById('drawSize').value);gctx.strokeStyle=col;gctx.lineWidth=size;gctx.lineCap='round';gctx.beginPath();gctx.moveTo(gLast.x,gLast.y);gctx.lineTo(p.x,p.y);gctx.stroke();gLast=p};const up=()=>{gdrawing=false;gLast=null};
+ c.addEventListener('mousedown',down);c.addEventListener('mousemove',move);window.addEventListener('mouseup',up);c.addEventListener('touchstart',down,{passive:false});c.addEventListener('touchmove',move,{passive:false});window.addEventListener('touchend',up);
+}
+function clearDrawing(){if(!gctx)return;gctx.fillStyle='#fff';gctx.fillRect(0,0,900,520)}
+async function submitDrawing(){if(!gctx)return;try{await api('/api/gartic/draw',{drawing:document.getElementById('garticCanvas').toDataURL('image/webp',.75)});document.getElementById('garticStatus').textContent='Drawing submitted! Vote on other players.';refreshGartic()}catch(e){document.getElementById('garticStatus').textContent=e.message}}
+async function voteGartic(id){try{await api('/api/gartic/vote',{drawingId:id});refreshGartic()}catch(e){alert(e.message)}}
+async function refreshGartic(){try{const r=await api('/api/gartic');document.getElementById('garticPrompt').textContent=r.state.prompt;const box=document.getElementById('garticDrawings');box.innerHTML=r.drawings.map(d=>`<div class="drawingCard"><img src="${d.drawing}" alt="Player drawing"><b>${escapeChat(d.username)}</b> • ${d.votes} votes<button class="btn" onclick="voteGartic(${d.id})">❤️ VOTE</button></div>`).join('')||'<div class="muted">No drawings submitted yet.</div>'}catch(e){}}
+async function adminExtraAction(kind){
+ const username=(document.getElementById('adminTargetUser')?.value||'').trim();if(!username)return alert('Enter a username first.');
+ try{await api('/api/admin/'+kind,{username});adminWriteLog(`${kind} • ${username}`);alert('Done.');refreshAdminUI()}catch(e){alert(e.message)}
+}
+async function postAdminAnnouncement(){const t=prompt('Announcement text:');if(!t)return;try{await api('/api/admin/announcement',{text:t});adminWriteLog('Posted announcement.')}catch(e){alert(e.message)}}
+document.addEventListener('DOMContentLoaded',()=>{fillV3();setupGartic();refreshLeaderBanner();refreshGartic();loadProfileUI();setInterval(refreshLeaderBanner,12000);setInterval(refreshGartic,5000)});
+</script>
+</body>
+</html>
